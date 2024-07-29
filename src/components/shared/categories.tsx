@@ -15,7 +15,7 @@ export const Categories: FC<Props> = ({ className }) => {
         <a
           className={cn(
             'flex items-center font-bold h-11 rounded-2xl px-5',
-            activeIndex === index && 'bg-white shadow-md shadow-gray-300 ',
+            activeIndex === index && 'bg-white shadow-md shadow-gray-300 text-primary',
           )}
           href='/'
           key={index}
