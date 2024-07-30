@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { cn } from '@/lib/utils';
-import { FilterCheckbox, Title } from '@/components/shared';
+import { CheckboxFiltresGroup, FilterCheckbox, Title } from '@/components/shared';
 import { Input } from '@/components/ui';
 import { RangeSlider } from './range-slider';
 
@@ -26,6 +26,23 @@ export const Filters: FC<Props> = ({ className }) => {
 
         <RangeSlider min={0} max={30000} step={100} value={[0, 30000]} />
       </div>
+
+      <CheckboxFiltresGroup
+        title='Цвет'
+        className='mt-5'
+        limit={3}
+        items={[
+          { text: 'Красный', value: '1' },
+          { text: 'Синий', value: '2' },
+          { text: 'Черный', value: '3' },
+          { text: 'Зеленый', value: '4' },
+          { text: 'Белый', value: '5' },
+        ]}
+        defaultItems={[
+          { text: 'Белый', value: '1' },
+          { text: 'Черный', value: '2' },
+        ]}
+      />
     </div>
   );
 };
