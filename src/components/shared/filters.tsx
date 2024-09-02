@@ -30,17 +30,32 @@ export const Filters: FC<Props> = ({ className }) => {
       <CheckboxFiltersGroup
         title='Цвет'
         className='mt-5'
-        limit={3}
         items={[
-          { text: 'Красный', value: '1' },
-          { text: 'Синий', value: '2' },
-          { text: 'Черный', value: '3' },
-          { text: 'Зеленый', value: '4' },
-          { text: 'Белый', value: '5' },
+          { text: 'Белый', value: '1' },
+          { text: 'Бордовый', value: '2' },
+          { text: 'Голубой', value: '3' },
+          { text: 'Желтый', value: '4' },
+          { text: 'Зеленый', value: '5' },
+          { text: 'Коричневый', value: '6' },
+          { text: 'Красный', value: '7' },
+          { text: 'Малиновый', value: '8' },
+          { text: 'Оранжевый', value: '9' },
+          { text: 'Розовый', value: '10' },
+          { text: 'Синий', value: '11' },
+          { text: 'Сиреневый', value: '12' },
+          { text: 'Темно-синий', value: '13' },
+          { text: 'Фиолетовый', value: '14' },
+          { text: 'Черный', value: '15' },
         ]}
         defaultItems={[
           { text: 'Белый', value: '1' },
           { text: 'Черный', value: '2' },
+          { text: 'Синий', value: '3' },
+          { text: 'Красный', value: '4' },
+          { text: 'Желтый', value: '5' },
+          { text: 'Зеленый', value: '6' },
+          { text: 'Коричневый', value: '7' },
+          { text: 'Фиолетовый', value: '8' },
         ]}
       />
     </div>
