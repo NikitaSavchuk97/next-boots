@@ -14,7 +14,7 @@ export const Filters: FC<Props> = ({ className }) => {
       <Title text='Фильтрация' size='sm' className='mb-5 font-bold' />
 
       <div className='flex flex-col gap-4'>
-        <FilterCheckbox text='В наличии' value='1' />
+        <FilterCheckbox text='В наличии' value='99' />
       </div>
 
       <div className='mt-5 border-y border-y-neutral-100 py-6 pb-7'>
