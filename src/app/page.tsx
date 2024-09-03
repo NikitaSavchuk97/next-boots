@@ -17,46 +17,220 @@ export default function Home() {
           <div className='flex-1'>
             <div className='flex flex-col gap-16'>
               <ProductsGroupList
-                title={'Боты'}
-                items={[
-                  {
-                    id: 1,
-                    name: 'Спорт-Боты',
-                    imageUrl:
-                      'https://static.street-beat.ru/upload/resize_cache/iblock/427/500_500_1/afvoep02iq1yml80xskk04rqcecmqrcc.JPG',
-                    price: 550,
-                    items: [{ price: 550 }],
-                  },
-                ]}
+                title={'Кроссовки'}
                 categotyId={1}
-              />
-              <ProductsGroupList
-                title={'НеБоты'}
                 items={[
                   {
                     id: 1,
+                    name: 'Кроссовки',
+                    imageUrl:
+                      'https://static.street-beat.ru/upload/resize_cache/iblock/427/500_500_1/afvoep02iq1yml80xskk04rqcecmqrcc.JPG',
+                    price: 5500,
+                    items: [{ price: 5500 }],
+                  },
+                  {
+                    id: 2,
                     name: 'Спорт-Боты',
                     imageUrl:
                       'https://static.street-beat.ru/upload/resize_cache/iblock/427/500_500_1/afvoep02iq1yml80xskk04rqcecmqrcc.JPG',
-                    price: 550,
-                    items: [{ price: 550 }],
+                    price: 5500,
+                    items: [{ price: 5500 }],
+                  },
+                  {
+                    id: 3,
+                    name: 'Спорт-Боты',
+                    imageUrl:
+                      'https://static.street-beat.ru/upload/resize_cache/iblock/427/500_500_1/afvoep02iq1yml80xskk04rqcecmqrcc.JPG',
+                    price: 5500,
+                    items: [{ price: 5500 }],
+                  },
+                  {
+                    id: 4,
+                    name: 'Спорт-Боты',
+                    imageUrl:
+                      'https://static.street-beat.ru/upload/resize_cache/iblock/427/500_500_1/afvoep02iq1yml80xskk04rqcecmqrcc.JPG',
+                    price: 5500,
+                    items: [{ price: 5500 }],
+                  },
+                  {
+                    id: 5,
+                    name: 'Спорт-Боты',
+                    imageUrl:
+                      'https://static.street-beat.ru/upload/resize_cache/iblock/427/500_500_1/afvoep02iq1yml80xskk04rqcecmqrcc.JPG',
+                    price: 5500,
+                    items: [{ price: 5500 }],
+                  },
+                  {
+                    id: 6,
+                    name: 'Спорт-Боты',
+                    imageUrl:
+                      'https://static.street-beat.ru/upload/resize_cache/iblock/427/500_500_1/afvoep02iq1yml80xskk04rqcecmqrcc.JPG',
+                    price: 5500,
+                    items: [{ price: 5500 }],
                   },
                 ]}
+              />
+              <ProductsGroupList
+                title={'Кеды'}
                 categotyId={2}
-              />
-              <ProductsGroupList
-                title={'СуперБоты'}
                 items={[
                   {
                     id: 1,
                     name: 'Спорт-Боты',
                     imageUrl:
                       'https://static.street-beat.ru/upload/resize_cache/iblock/427/500_500_1/afvoep02iq1yml80xskk04rqcecmqrcc.JPG',
-                    price: 550,
-                    items: [{ price: 550 }],
+                    price: 5500,
+                    items: [{ price: 5500 }],
+                  },
+                  {
+                    id: 2,
+                    name: 'Спорт-Боты',
+                    imageUrl:
+                      'https://static.street-beat.ru/upload/resize_cache/iblock/427/500_500_1/afvoep02iq1yml80xskk04rqcecmqrcc.JPG',
+                    price: 5500,
+                    items: [{ price: 5500 }],
+                  },
+                  {
+                    id: 3,
+                    name: 'Спорт-Боты',
+                    imageUrl:
+                      'https://static.street-beat.ru/upload/resize_cache/iblock/427/500_500_1/afvoep02iq1yml80xskk04rqcecmqrcc.JPG',
+                    price: 5500,
+                    items: [{ price: 5500 }],
+                  },
+                  {
+                    id: 4,
+                    name: 'Спорт-Боты',
+                    imageUrl:
+                      'https://static.street-beat.ru/upload/resize_cache/iblock/427/500_500_1/afvoep02iq1yml80xskk04rqcecmqrcc.JPG',
+                    price: 5500,
+                    items: [{ price: 5500 }],
+                  },
+                  {
+                    id: 5,
+                    name: 'Спорт-Боты',
+                    imageUrl:
+                      'https://static.street-beat.ru/upload/resize_cache/iblock/427/500_500_1/afvoep02iq1yml80xskk04rqcecmqrcc.JPG',
+                    price: 5500,
+                    items: [{ price: 5500 }],
+                  },
+                  {
+                    id: 6,
+                    name: 'Спорт-Боты',
+                    imageUrl:
+                      'https://static.street-beat.ru/upload/resize_cache/iblock/427/500_500_1/afvoep02iq1yml80xskk04rqcecmqrcc.JPG',
+                    price: 5500,
+                    items: [{ price: 5500 }],
                   },
                 ]}
+              />
+              <ProductsGroupList
+                title={'Сандалии'}
                 categotyId={3}
+                items={[
+                  {
+                    id: 1,
+                    name: 'Спорт-Боты',
+                    imageUrl:
+                      'https://static.street-beat.ru/upload/resize_cache/iblock/427/500_500_1/afvoep02iq1yml80xskk04rqcecmqrcc.JPG',
+                    price: 5500,
+                    items: [{ price: 5500 }],
+                  },
+                  {
+                    id: 2,
+                    name: 'Спорт-Боты',
+                    imageUrl:
+                      'https://static.street-beat.ru/upload/resize_cache/iblock/427/500_500_1/afvoep02iq1yml80xskk04rqcecmqrcc.JPG',
+                    price: 5500,
+                    items: [{ price: 5500 }],
+                  },
+                  {
+                    id: 3,
+                    name: 'Спорт-Боты',
+                    imageUrl:
+                      'https://static.street-beat.ru/upload/resize_cache/iblock/427/500_500_1/afvoep02iq1yml80xskk04rqcecmqrcc.JPG',
+                    price: 5500,
+                    items: [{ price: 5500 }],
+                  },
+                  {
+                    id: 4,
+                    name: 'Спорт-Боты',
+                    imageUrl:
+                      'https://static.street-beat.ru/upload/resize_cache/iblock/427/500_500_1/afvoep02iq1yml80xskk04rqcecmqrcc.JPG',
+                    price: 5500,
+                    items: [{ price: 5500 }],
+                  },
+                  {
+                    id: 5,
+                    name: 'Спорт-Боты',
+                    imageUrl:
+                      'https://static.street-beat.ru/upload/resize_cache/iblock/427/500_500_1/afvoep02iq1yml80xskk04rqcecmqrcc.JPG',
+                    price: 5500,
+                    items: [{ price: 5500 }],
+                  },
+                  {
+                    id: 6,
+                    name: 'Спорт-Боты',
+                    imageUrl:
+                      'https://static.street-beat.ru/upload/resize_cache/iblock/427/500_500_1/afvoep02iq1yml80xskk04rqcecmqrcc.JPG',
+                    price: 5500,
+                    items: [{ price: 5500 }],
+                  },
+                ]}
+              />
+              <ProductsGroupList
+                title={'Ботинки'}
+                categotyId={4}
+                items={[
+                  {
+                    id: 1,
+                    name: 'Спорт-Боты',
+                    imageUrl:
+                      'https://static.street-beat.ru/upload/resize_cache/iblock/427/500_500_1/afvoep02iq1yml80xskk04rqcecmqrcc.JPG',
+                    price: 5500,
+                    items: [{ price: 5500 }],
+                  },
+                  {
+                    id: 2,
+                    name: 'Спорт-Боты',
+                    imageUrl:
+                      'https://static.street-beat.ru/upload/resize_cache/iblock/427/500_500_1/afvoep02iq1yml80xskk04rqcecmqrcc.JPG',
+                    price: 5500,
+                    items: [{ price: 5500 }],
+                  },
+                  {
+                    id: 3,
+                    name: 'Спорт-Боты',
+                    imageUrl:
+                      'https://static.street-beat.ru/upload/resize_cache/iblock/427/500_500_1/afvoep02iq1yml80xskk04rqcecmqrcc.JPG',
+                    price: 5500,
+                    items: [{ price: 5500 }],
+                  },
+                  {
+                    id: 4,
+                    name: 'Спорт-Боты',
+                    imageUrl:
+                      'https://static.street-beat.ru/upload/resize_cache/iblock/427/500_500_1/afvoep02iq1yml80xskk04rqcecmqrcc.JPG',
+                    price: 5500,
+                    items: [{ price: 5500 }],
+                  },
+                  {
+                    id: 5,
+                    name: 'Спорт-Боты',
+                    imageUrl:
+                      'https://static.street-beat.ru/upload/resize_cache/iblock/427/500_500_1/afvoep02iq1yml80xskk04rqcecmqrcc.JPG',
+                    price: 5500,
+                    items: [{ price: 5500 }],
+                  },
+                  {
+                    id: 6,
+                    name: 'Спорт-Боты',
+                    imageUrl:
+                      'https://static.street-beat.ru/upload/resize_cache/iblock/427/500_500_1/afvoep02iq1yml80xskk04rqcecmqrcc.JPG',
+                    price: 5500,
+                    items: [{ price: 5500 }],
+                  },
+                ]}
               />
             </div>
           </div>

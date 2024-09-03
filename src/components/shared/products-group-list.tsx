@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import { useIntersection } from 'react-use';
 import { ProductCard } from './product-card';
 import { Title } from './title';
+import { useCategoryStore } from '@/store/category';
 
 interface Props {
   title: string;
@@ -20,20 +21,23 @@ export const ProductsGroupList: FC<Props> = ({
   className,
   listClassName,
 }) => {
+  const setActiveCategoryId = useCategoryStore((state) => state.setActiveId);
   const intersectionRef = useRef(null);
   const intersection = useIntersection(intersectionRef, {
-    threshold: 0.4,
+    // root: null,
+    // rootMargin: '0px',
+    threshold: 1,
   });
 
   useEffect(() => {
     if (intersection?.isIntersecting) {
-      console.log(title, categotyId);
+      setActiveCategoryId(categotyId);
     }
   }, [title, categotyId, intersection?.isIntersecting]);
 
   return (
     <div className={cn('', className)} id={title} ref={intersectionRef}>
-      <Title text={title} size='lg' className='font-extrabold mb-5' />
+      <Title text={title} size='lg' className='font-extrabold mb-6' />
 
       <div className={cn('grid grid-cols-3 gap-[50px]', listClassName)}>
         {items.map((product) => {
