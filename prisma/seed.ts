@@ -115,94 +115,117 @@ async function up() {
         productId: AIR_FORCE_1_MEDIUM_OLIVE_BLACK_STARFISH_MEN.id,
         bootType: 1,
         price: randomDecimalNumber(11000, 12000),
-        quantity: 5,
+        quantityOfProductItem: 5,
         size: 39,
       },
       {
         productId: AIR_FORCE_1_MEDIUM_OLIVE_BLACK_STARFISH_MEN.id,
         bootType: 1,
         price: randomDecimalNumber(12000, 13000),
-        quantity: 3,
+        quantityOfProductItem: 3,
         size: 40,
       },
       {
         productId: AIR_FORCE_1_MEDIUM_OLIVE_BLACK_STARFISH_MEN.id,
         bootType: 1,
         price: randomDecimalNumber(13000, 14000),
-        quantity: 7,
+        quantityOfProductItem: 7,
         size: 41,
       },
       {
         productId: AIR_FORCE_1_MEDIUM_OLIVE_BLACK_STARFISH_MEN.id,
         bootType: 1,
         price: randomDecimalNumber(14000, 15000),
-        quantity: 2,
+        quantityOfProductItem: 2,
         size: 42,
       },
       {
         productId: NEW_BALANCE_BB550PWG_WHITE_UNISEX.id,
         bootType: 1,
         price: randomDecimalNumber(9000, 10000),
-        quantity: 5,
+        quantityOfProductItem: 5,
         size: 41,
       },
       {
         productId: NEW_BALANCE_BB550PWG_WHITE_UNISEX.id,
         bootType: 1,
         price: randomDecimalNumber(10000, 11000),
-        quantity: 4,
+        quantityOfProductItem: 4,
         size: 42,
       },
       {
         productId: NEW_BALANCE_BB550PWG_WHITE_UNISEX.id,
         bootType: 1,
         price: randomDecimalNumber(11000, 12000),
-        quantity: 3,
+        quantityOfProductItem: 3,
         size: 43,
       },
       {
         productId: BRIKENSTOCK_BOSTON_EVA_BLACK_WOMEN.id,
         bootType: 3,
         price: randomDecimalNumber(4000, 4500),
-        quantity: 2,
+        quantityOfProductItem: 2,
         size: 36,
       },
       {
         productId: BRIKENSTOCK_BOSTON_EVA_BLACK_WOMEN.id,
         bootType: 3,
         price: randomDecimalNumber(4500, 5000),
-        quantity: 3,
+        quantityOfProductItem: 3,
         size: 37,
       },
       {
         productId: BRIKENSTOCK_BOSTON_EVA_BLACK_WOMEN.id,
         bootType: 3,
         price: randomDecimalNumber(5000, 5500),
-        quantity: 1,
+        quantityOfProductItem: 1,
         size: 38,
       },
       {
         productId: THE_NORTH_FACE_EXPLORE_CAMP_SANDAL_BLACK_MEN.id,
         bootType: 3,
         price: randomDecimalNumber(4000, 4500),
-        quantity: 2,
+        quantityOfProductItem: 2,
         size: 41,
       },
       {
         productId: THE_NORTH_FACE_EXPLORE_CAMP_SANDAL_BLACK_MEN.id,
         bootType: 3,
         price: randomDecimalNumber(4500, 5000),
-        quantity: 3,
+        quantityOfProductItem: 3,
         size: 42,
       },
       {
         productId: THE_NORTH_FACE_EXPLORE_CAMP_SANDAL_BLACK_MEN.id,
         bootType: 3,
         price: randomDecimalNumber(5000, 5500),
-        quantity: 1,
+        quantityOfProductItem: 1,
         size: 43,
       },
     ],
+  });
+
+  await prisma.cart.createMany({
+    data: [
+      {
+        userId: 1,
+        totalAmount: 0,
+        token: '12345678',
+      },
+      {
+        userId: 2,
+        totalAmount: 0,
+        token: '87654321',
+      },
+    ],
+  });
+
+  await prisma.cartItem.create({
+    data: {
+      productItemId: 1,
+      cartId: 1,
+      quantityInCart: 2,
+    },
   });
 }
 
@@ -211,6 +234,8 @@ async function down() {
   await prisma.$executeRaw`TRUNCATE TABLE "Category" RESTART IDENTITY CASCADE`;
   await prisma.$executeRaw`TRUNCATE TABLE "Product" RESTART IDENTITY CASCADE`;
   await prisma.$executeRaw`TRUNCATE TABLE "ProductItem" RESTART IDENTITY CASCADE`;
+  await prisma.$executeRaw`TRUNCATE TABLE "Cart" RESTART IDENTITY CASCADE`;
+  await prisma.$executeRaw`TRUNCATE TABLE "CartItem" RESTART IDENTITY CASCADE`;
 }
 
 async function main() {
