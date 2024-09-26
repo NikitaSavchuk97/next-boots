@@ -1,10 +1,13 @@
 import { cn } from '@/lib/utils';
 import { FC } from 'react';
 import { Container } from './container';
-import Image from 'next/image';
+
 import { Button } from '../ui';
 import { ArrowRight, ShoppingCart, User } from 'lucide-react';
+import { SearchInput } from './search-input';
+
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface Props {
   className?: string;
@@ -16,6 +19,10 @@ export const Header: FC<Props> = ({ className }) => {
         <Link href='/'>
           <Image className='rounded-md' src='/logo.png' alt='logo' width={300} height={100} />
         </Link>
+
+        <div className='mx-10 flex-1'>
+          <SearchInput />
+        </div>
 
         <div className='flex items-center gap-3'>
           <Button className='flex items-center gap-1' variant='outline'>
