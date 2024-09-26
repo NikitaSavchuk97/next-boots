@@ -1,10 +1,28 @@
 generator client {
-	provider													= "prisma-client-js"
+	provider = 												"prisma-client-js"
 }
 
 datasource db {
-	provider													= "postgresql"
-	url																= env("POSTGRESQL_URL")
+	provider = 												"postgresql"
+	url	=															env("POSTGRESQL_URL")
+}
+
+enum ProductGender {
+																		MALE
+																		FEMALE
+																		UNISEX
+																		CHILD
+}
+
+enum OrderStatus {
+																		PENDING
+																		SUCCEEDED
+																		CANCELLED
+}
+
+enum UserRole {
+																		ADMIN
+																		USER
 }
 
 model User {
@@ -27,14 +45,14 @@ model Cart {
 	id 																Int @id @default(autoincrement())
 	user															User? @relation(fields: [userId], references: [id])
 	userId														Int? @unique
-	items															CardItem[]
+	items															CartItem[]
 	totalAmount												Int @default(0)
 	token															String?
 	createdAt													DateTime @default(now())
 	updatedAt													DateTime @updatedAt
 }
 
-model CardItem {
+model CartItem {
 	id 																Int @id @default(autoincrement())
 	productItem												ProductItem @relation(fields: [productItemId], references: [id])
 	productItemId 										Int
@@ -54,10 +72,12 @@ model Category {
 model Product {
 	id 																Int @id @default(autoincrement())
 	name															String
-	imageUrl													String
+	previewImageUrl										String
+	images														String[]
 	brand															String
 	model															String
 	mainColor													String
+	male															ProductGender
 	items       											ProductItem[]
 	category													Category @relation(fields: [categoryId],references: [id])
 	categoryId												Int 
@@ -68,9 +88,10 @@ model Product {
 model ProductItem {
   id 																Int @id @default(autoincrement())
   price    													Int
+	quantity													Int @default(1)
   size      												Int?
   bootType 													Int?
-  items 														CardItem[]
+  items 														CartItem[]
   product   												Product @relation(fields: [productId], references: [id])
 	productId 												Int
   createdAt 												DateTime @default(now())
@@ -103,15 +124,4 @@ model VerificationCode {
 	createdAt 												DateTime @default(now())
 
 	@@unique([userId, code])
-}
-
-enum OrderStatus {
-	PENDING
-	SUCCEEDED
-	CANCELLED
-}
-
-enum UserRole {
-	ADMIN
-	USER
 }
