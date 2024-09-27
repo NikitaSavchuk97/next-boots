@@ -1,22 +1,41 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { Search } from 'lucide-react';
 import Link from 'next/link';
-import { FC, useRef, useState } from 'react';
-import { useClickAway } from 'react-use';
+import { FC, useEffect, useRef, useState } from 'react';
+import { useClickAway, useDebounce } from 'react-use';
+import { Api } from '../../../services/api-client';
+import { Search } from 'lucide-react';
+import { Product } from '@prisma/client';
 
 interface Props {
   className?: string;
 }
 
 export const SearchInput: FC<Props> = ({ className }) => {
+  const [searchQuery, setSearchQuery] = useState('');
   const [focused, setFocused] = useState(false);
+  const [products, setProducts] = useState<Product[]>([]);
   const ref = useRef(null);
 
   useClickAway(ref, () => {
     setFocused(false);
   });
+
+  useDebounce(
+    () => {
+      Api.products.searchProducts(searchQuery).then((items) => {
+        setProducts(items);
+      });
+    },
+    500,
+    [searchQuery],
+  );
+
+  const onClickItem = () => {
+    setFocused(false);
+    setSearchQuery('');
+  };
 
   return (
     <>
@@ -32,25 +51,45 @@ export const SearchInput: FC<Props> = ({ className }) => {
           type='text'
           placeholder='Найти пару...'
           onFocus={() => setFocused(true)}
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <div
-          className={cn(
-            'absolute w-full bg-white rounded-xl py-2 top-14 shadow-md transition-all duration-200 invisible opacity-0 z-30',
-            focused && 'visible opacity-100 top-12',
-          )}
-        >
-          <Link
-            className='flex w-full px-3 py-2 items-center gap-3 hover:bg-primary/10'
-            href='/product/1'
+
+        {products.length > 0 ? (
+          <div
+            className={cn(
+              'absolute w-full bg-white rounded-xl py-2 top-14 shadow-md transition-all duration-200 invisible opacity-0 z-30',
+              focused && 'visible opacity-100 top-12',
+            )}
           >
-            <img
-              className='rounded-sm h-8 w-8'
-              src='https://1.downloader.disk.yandex.ru/preview/c5ab3db2cae78007171b3c1d40d6904bb83d9035c5bfd62b061e91a027c67afd/inf/ctg6tDuuEjAUUx51aIBZ642byRMsiR8tTKw-hb6nBbNP7fotnl1Rmna8GPa5xxXGLO9kSJ0HM9rvq5ulWM5rfg%3D%3D?uid=795455607&filename=nike-AIR_FORCE_1_07-MEDIUM_OLIVE_BLACK_STARFISH-1.webp&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=795455607&tknv=v2&size=1912x1004'
-              alt='Air Force 1'
-            />
-            <span>Air Force 1</span>
-          </Link>
-        </div>
+            {products.map((product) => (
+              <Link
+                onClick={onClickItem}
+                key={product.id}
+                className='flex w-full px-3 py-2 items-center gap-3 hover:bg-primary/10'
+                href={`/product/${product.id}`}
+              >
+                <img
+                  className='rounded-sm h-8 w-8'
+                  src={product.previewImageUrl}
+                  alt={product.name}
+                />
+                <span>{product.name}</span>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <div
+            className={cn(
+              'absolute w-full bg-white rounded-xl py-2 top-14 shadow-md transition-all duration-200 invisible opacity-0 z-30',
+              focused && 'visible opacity-100 top-12',
+            )}
+          >
+            <p className='flex w-full px-3 py-2 items-center gap-3'>
+              Нет товаров подходящих товаров
+            </p>
+          </div>
+        )}
       </div>
     </>
   );
