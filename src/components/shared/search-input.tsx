@@ -23,10 +23,13 @@ export const SearchInput: FC<Props> = ({ className }) => {
   });
 
   useDebounce(
-    () => {
-      Api.products.searchProducts(searchQuery).then((items) => {
-        setProducts(items);
-      });
+    async () => {
+      try {
+        const responce = await Api.products.searchProducts(searchQuery);
+        setProducts(responce);
+      } catch (e) {
+        console.error(e);
+      }
     },
     500,
     [searchQuery],
