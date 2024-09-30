@@ -43,7 +43,7 @@ const RangeSlider = forwardRef(
         step={step}
         value={localValues}
         onValueChange={handleValueChange}
-        className={cn('relative flex w-full touch-none select-none mb-6 items-center', className)}
+        className={cn('relative flex w-full touch-none select-none  items-center', className)}
         {...props}
       >
         <SliderPrimitive.Track className='relative h-1 w-full grow overflow-hidden rounded-full bg-primary/20'>
@@ -57,10 +57,11 @@ const RangeSlider = forwardRef(
                 left: `calc(${((value - min) / (max - min)) * 100}% + 0px)`,
                 top: `10px`,
               }}
-            >
-              <span className='text-sm'>{formatLabel ? formatLabel(value) : value}</span>
-            </div>
-            <SliderPrimitive.Thumb className='block h-4 w-4 rounded-full border border-primary/50 bg-white shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50' />
+            ></div>
+
+            <SliderPrimitive.Thumb className='flex flex-col items-center h-4 w-4 rounded-full border border-primary/50 bg-white shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50'>
+              
+            </SliderPrimitive.Thumb>
           </Fragment>
         ))}
       </SliderPrimitive.Root>

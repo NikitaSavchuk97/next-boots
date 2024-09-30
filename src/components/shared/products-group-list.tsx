@@ -36,10 +36,12 @@ export const ProductsGroupList: FC<Props> = ({
   }, [title, categotyId, intersection?.isIntersecting]);
 
   return (
-    <div className={cn('', className)} id={title} ref={intersectionRef}>
+    <div className={cn('w-full', className)} id={title} ref={intersectionRef}>
       <Title text={title} size='lg' className='font-extrabold mb-6' />
 
-      <div className={cn('grid grid-cols-3 gap-[50px]', listClassName)}>
+      <div
+        className={cn('grid lg:grid-cols-2  xl:grid-cols-3 2xl:grid-cols-4 gap-5 ', listClassName)}
+      >
         {items.map((product) => {
           return (
             <ProductCard

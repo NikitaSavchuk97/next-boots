@@ -46,7 +46,8 @@ async function up() {
       male: 'MALE',
       brand: 'nike',
       model: 'air force 1',
-      mainColor: 'olive',
+      mainColorEN: 'olive',
+      mainColorRU: 'хаки',
     },
   });
 
@@ -67,7 +68,8 @@ async function up() {
       male: 'UNISEX',
       brand: 'new balance',
       model: 'bb550pwg',
-      mainColor: 'white',
+      mainColorEN: 'white',
+      mainColorRU: 'белый',
     },
   });
 
@@ -85,7 +87,8 @@ async function up() {
       male: 'FEMALE',
       brand: 'brikenstock',
       model: 'boston',
-      mainColor: 'black',
+      mainColorEN: 'black',
+      mainColorRU: 'черный',
     },
   });
 
@@ -105,7 +108,8 @@ async function up() {
       male: 'MALE',
       brand: 'the north face',
       model: 'camp sandal',
-      mainColor: 'black',
+      mainColorEN: 'black',
+      mainColorRU: 'черный',
     },
   });
 

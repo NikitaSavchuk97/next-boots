@@ -3,7 +3,7 @@
 import { FC, useState } from 'react';
 import { FilterChecboxProps } from './filter-checkbox';
 import { FilterCheckbox } from '@/components/shared';
-import { Input } from '../ui';
+import { Input, Skeleton } from '../ui';
 
 interface Props {
   title: string;
@@ -12,6 +12,7 @@ interface Props {
   limit?: number;
   searchInputPlaceholder?: string;
   onChange?: (values: string[]) => void;
+  loading: boolean;
   defaultValue?: string[];
   className?: string;
 }
@@ -20,9 +21,10 @@ export const CheckboxFiltersGroup: FC<Props> = ({
   title,
   items,
   defaultItems,
-  limit = 8,
+  limit = 2,
   searchInputPlaceholder = 'Поиск... ',
   onChange,
+  loading,
   defaultValue,
   className,
 }) => {
@@ -35,6 +37,18 @@ export const CheckboxFiltersGroup: FC<Props> = ({
     : defaultItems.slice(0, limit);
 
   const onChangeSearchValue = (value: string) => setSearchValue(value);
+
+  if (loading) {
+    return (
+      <div className={className}>
+        <p className='font-bold mb-3'>{title}</p>
+        {...Array(limit)
+          .fill(0)
+          .map((_, index) => <Skeleton key={index} className='w-[150px] h-6 mb-4 rounded-[8px]' />)}
+        <Skeleton className='w-28 h-6 mb-4 rounded-[8px]' />
+      </div>
+    );
+  }
 
   return (
     <div className={className}>
@@ -51,24 +65,20 @@ export const CheckboxFiltersGroup: FC<Props> = ({
       )}
 
       <div className='flex flex-col gap-4 max-h-96 pr-2 overflow-auto scrollbar'>
-        {!list.length ? (
-          <p>Нет результатов</p>
-        ) : (
-          <>
-            {list.map((item: FilterChecboxProps, index: number) => {
-              return (
-                <FilterCheckbox
-                  text={item.text}
-                  value={item.value}
-                  key={index}
-                  endAdornment={item.endAdornment}
-                  //checked={false}
-                  onCheckedChange={(id) => console.log(id)}
-                />
-              );
-            })}
-          </>
-        )}
+        <>
+          {list.map((item: FilterChecboxProps, index: number) => {
+            return (
+              <FilterCheckbox
+                text={item.text}
+                value={item.value}
+                key={index}
+                endAdornment={item.endAdornment}
+                //checked={false}
+                onCheckedChange={(boolean) => console.log(boolean)}
+              />
+            );
+          })}
+        </>
       </div>
 
       {items.length > limit && (
@@ -81,3 +91,22 @@ export const CheckboxFiltersGroup: FC<Props> = ({
     </div>
   );
 };
+
+// {list.length ? (
+// 	<>
+// 		{list.map((item: FilterChecboxProps, index: number) => {
+// 			return (
+// 				<FilterCheckbox
+// 					text={item.text}
+// 					value={item.value}
+// 					key={index}
+// 					endAdornment={item.endAdornment}
+// 					//checked={false}
+// 					onCheckedChange={(boolean) => console.log(boolean)}
+// 				/>
+// 			);
+// 		})}
+// 	</>
+// ) : (
+// 	<p>Нет результатов</p>
+// )}
