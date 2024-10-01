@@ -8,13 +8,15 @@ import { Input, Skeleton } from '../ui';
 interface Props {
   title: string;
   items: FilterChecboxProps[];
-  defaultItems: FilterChecboxProps[];
+  defaultItems?: FilterChecboxProps[];
   limit?: number;
   searchInputPlaceholder?: string;
-  onChange?: (values: string[]) => void;
+  onClickCheckbox?: (id: string) => void;
   loading: boolean;
   defaultValue?: string[];
+  selectedIds?: Set<string>;
   className?: string;
+  name: string;
 }
 
 export const CheckboxFiltersGroup: FC<Props> = ({
@@ -23,10 +25,12 @@ export const CheckboxFiltersGroup: FC<Props> = ({
   defaultItems,
   limit = 2,
   searchInputPlaceholder = 'Поиск... ',
-  onChange,
+  onClickCheckbox,
   loading,
   defaultValue,
+  selectedIds,
   className,
+  name,
 }) => {
   const [showAll, setShowAll] = useState(false);
   const [searchValue, setSearchValue] = useState('');
@@ -34,10 +38,12 @@ export const CheckboxFiltersGroup: FC<Props> = ({
     ? items.filter((item: FilterChecboxProps) =>
         item.text.toLowerCase().includes(searchValue.toLowerCase()),
       )
-    : defaultItems.slice(0, limit);
+    : defaultItems?.slice(0, limit);
 
   const onChangeSearchValue = (value: string) => setSearchValue(value);
-
+  {
+    console.log(selectedIds);
+  }
   if (loading) {
     return (
       <div className={className}>
@@ -66,15 +72,16 @@ export const CheckboxFiltersGroup: FC<Props> = ({
 
       <div className='flex flex-col gap-4 max-h-96 pr-2 overflow-auto scrollbar'>
         <>
-          {list.map((item: FilterChecboxProps, index: number) => {
+          {list?.map((item: FilterChecboxProps, index: number) => {
             return (
               <FilterCheckbox
                 text={item.text}
                 value={item.value}
                 key={index}
                 endAdornment={item.endAdornment}
-                //checked={false}
-                onCheckedChange={(boolean) => console.log(boolean)}
+                checked={selectedIds?.has(item.value)}
+                onCheckedChange={() => onClickCheckbox?.(item.value)}
+                name={name}
               />
             );
           })}

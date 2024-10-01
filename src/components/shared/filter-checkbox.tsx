@@ -3,7 +3,7 @@ import { Checkbox } from '../ui/checkbox';
 
 export interface FilterChecboxProps {
   text: string;
-  value: number;
+  value: string;
   endAdornment?: ReactNode;
   onCheckedChange?: (checked: boolean) => void;
   checked?: boolean;

@@ -8,7 +8,7 @@ export default function Home() {
         <Title text='Все пары' size='lg' className='font-extrabold' />
       </Container>
       <TopBar />
-      <Container className=' mt-10 pb-14'>
+      <Container className='mt-10 pb-14 pr-4 pl-4'>
         <div className=' flex gap-[80px]'>
           <div className='w-[250px]'>
             <Filters />
