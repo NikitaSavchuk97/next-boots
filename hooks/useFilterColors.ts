@@ -1,6 +1,6 @@
+import { useSet } from 'react-use';
 import { useEffect, useState } from 'react';
 import { Api } from '../services/api-client';
-import { useSet } from 'react-use';
 
 interface ReturnProps {
   colors: { value: string; text: string }[]; // Массив всех цветов
@@ -10,10 +10,10 @@ interface ReturnProps {
   loading: boolean;
 }
 
-export const useFilterColors = (): ReturnProps => {
+export const useFilterColors = (colorsSelectedBeforeReload: string[] = []): ReturnProps => {
   const [colors, setColors] = useState<ReturnProps['colors']>([]);
   const [defaultColors, setDefaultColors] = useState<ReturnProps['defaultColors']>([]);
-  const [selectedColors, { toggle }] = useSet(new Set<string>([]));
+  const [selectedColors, { toggle }] = useSet(new Set<string>(colorsSelectedBeforeReload));
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -23,8 +23,8 @@ export const useFilterColors = (): ReturnProps => {
         .searchProducts('')
         .then((data) => {
           // Создаем массив объектов с value и text
-          const colorItems = data.map((item, index) => ({
-            value: String(index),
+          const colorItems = data.map((item) => ({
+            value: item.mainColorEN,
             text: item.mainColorRU,
           }));
 
@@ -58,6 +58,5 @@ export const useFilterColors = (): ReturnProps => {
       setLoading(false);
     }
   }, []);
-
   return { colors, defaultColors, loading, onAddColorValue: toggle, selectedColors };
 };
