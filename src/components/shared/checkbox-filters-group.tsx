@@ -6,6 +6,7 @@ import { FilterCheckbox } from '@/components/shared';
 import { Input, Skeleton } from '../ui';
 
 interface Props {
+  search?: boolean;
   title: string;
   items: FilterChecboxProps[];
   defaultItems?: FilterChecboxProps[];
@@ -14,12 +15,13 @@ interface Props {
   onClickCheckbox?: (id: string) => void;
   loading: boolean;
   defaultValue?: string[];
-  selectedIds?: Set<string>;
+  selected?: Set<string>;
   className?: string;
   name: string;
 }
 
 export const CheckboxFiltersGroup: FC<Props> = ({
+  search = true,
   title,
   items,
   defaultItems,
@@ -28,7 +30,7 @@ export const CheckboxFiltersGroup: FC<Props> = ({
   onClickCheckbox,
   loading,
   defaultValue,
-  selectedIds,
+  selected,
   className,
   name,
 }) => {
@@ -38,12 +40,10 @@ export const CheckboxFiltersGroup: FC<Props> = ({
     ? items.filter((item: FilterChecboxProps) =>
         item.text.toLowerCase().includes(searchValue.toLowerCase()),
       )
-    : defaultItems?.slice(0, limit);
+    : (defaultItems || items).slice(0, limit);
 
   const onChangeSearchValue = (value: string) => setSearchValue(value);
-  {
-    console.log(selectedIds);
-  }
+
   if (loading) {
     return (
       <div className={className}>
@@ -60,7 +60,7 @@ export const CheckboxFiltersGroup: FC<Props> = ({
     <div className={className}>
       <p className='font-bold mb-3'>{title}</p>
 
-      {showAll && (
+      {showAll && search && (
         <div className='mb-5'>
           <Input
             onChange={(e) => onChangeSearchValue(e.target.value)}
@@ -79,7 +79,7 @@ export const CheckboxFiltersGroup: FC<Props> = ({
                 value={item.value}
                 key={index}
                 endAdornment={item.endAdornment}
-                checked={selectedIds?.has(item.value)}
+                checked={selected?.has(item.value)}
                 onCheckedChange={() => onClickCheckbox?.(item.value)}
                 name={name}
               />
@@ -98,22 +98,3 @@ export const CheckboxFiltersGroup: FC<Props> = ({
     </div>
   );
 };
-
-// {list.length ? (
-// 	<>
-// 		{list.map((item: FilterChecboxProps, index: number) => {
-// 			return (
-// 				<FilterCheckbox
-// 					text={item.text}
-// 					value={item.value}
-// 					key={index}
-// 					endAdornment={item.endAdornment}
-// 					//checked={false}
-// 					onCheckedChange={(boolean) => console.log(boolean)}
-// 				/>
-// 			);
-// 		})}
-// 	</>
-// ) : (
-// 	<p>Нет результатов</p>
-// )}

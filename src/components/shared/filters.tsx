@@ -1,11 +1,13 @@
 'use client';
 
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { CheckboxFiltersGroup, FilterCheckbox, Title } from '@/components/shared';
 import { Input } from '@/components/ui';
 import { RangeSlider } from './range-slider';
 import { useFilterColors } from '../../../hooks/useFilterColors';
+import { useSet } from 'react-use';
+import { useFilterBrands } from '../../../hooks/useFilterBrands';
 
 interface Props {
   className?: string;
@@ -17,8 +19,30 @@ interface PriceProps {
 }
 
 export const Filters: FC<Props> = ({ className }) => {
-  const { colors, defaultColors, loading, onAddId, selectedIds } = useFilterColors();
+  const { colors, defaultColors, loading, onAddColorValue, selectedColors } = useFilterColors();
+  const { brands, defaultBrands, onAddBrandValue, selectedBrands } = useFilterBrands();
+  const [sizes, { toggle: toggleSizes }] = useSet(new Set<string>([]));
+  const [genders, { toggle: toggleGender }] = useSet(new Set<string>([]));
   const [prices, setPrice] = useState<PriceProps>({ priceForm: 0, priceTo: 30000 });
+
+  const filters = {
+    gender: Array.from(genders),
+    ...prices,
+    brand: Array.from(selectedBrands),
+    color: Array.from(selectedColors),
+    size: Array.from(sizes),
+  };
+
+  useEffect(() => {
+    const filters = {
+      gender: Array.from(genders),
+      ...prices,
+      brand: Array.from(selectedBrands),
+      color: Array.from(selectedColors),
+      size: Array.from(sizes),
+    };
+  }, [prices, genders, sizes, brands, colors, selectedBrands, selectedColors]);
+
   const updatePrice = (name: keyof PriceProps, value: number) => {
     setPrice({
       ...prices,
@@ -30,23 +54,39 @@ export const Filters: FC<Props> = ({ className }) => {
       <Title text='Фильтрация' size='sm' className=' font-bold' />
 
       <div className='flex flex-col gap-4 border-b  py-6 pb-7'>
-        <FilterCheckbox text='В наличии' value={'99'} />
+        <FilterCheckbox text='В наличии' value={'1'} />
+      </div>
+
+      <div className=' border-b  py-6 pb-7'>
+        <CheckboxFiltersGroup
+          name='genders'
+          title='Пол'
+          className=''
+          loading={false}
+          selected={genders}
+          onClickCheckbox={toggleGender}
+          limit={3}
+          items={[
+            { text: 'Мужские', value: '1' },
+            { text: 'Женские', value: '2' },
+            { text: 'Унисекс', value: '3' },
+          ]}
+        />
       </div>
 
       <div className='border-b py-6 pb-7'>
-        <p className='font-bold mb-3'>Цена от и до:</p>
+        <p className='font-bold mb-3'>Цена</p>
         <div className='flex gap-3 mb-5'>
           <Input
             type='number'
-            placeholder='0'
             min={0}
             max={30000}
             value={String(prices.priceForm)}
             onChange={(e) => updatePrice('priceForm', Number(e.target.value))}
           />
+          <span></span>
           <Input
             type='number'
-            placeholder='30000'
             min={0}
             max={30000}
             value={String(prices.priceTo)}
@@ -65,11 +105,41 @@ export const Filters: FC<Props> = ({ className }) => {
 
       <div className=' border-b  py-6 pb-7'>
         <CheckboxFiltersGroup
+          name='brand'
+          title='Бренд'
+          className=''
+          items={brands}
+          defaultItems={defaultBrands}
+          loading={loading}
+          onClickCheckbox={onAddBrandValue}
+          selected={selectedBrands}
+        />
+      </div>
+
+      <div className=' border-b  py-6 pb-7'>
+        <CheckboxFiltersGroup
+          name='colors'
+          title='Цвет'
+          className=''
+          limit={2}
+          items={colors}
+          defaultItems={defaultColors}
+          loading={loading}
+          onClickCheckbox={onAddColorValue}
+          selected={selectedColors}
+        />
+      </div>
+
+      <div className=' border-b  py-6 pb-7'>
+        <CheckboxFiltersGroup
+          search={false}
           name='sizes'
           title='Размеры'
           className=''
           loading={false}
           limit={7}
+          selected={sizes}
+          onClickCheckbox={toggleSizes}
           items={[
             { text: '25 EU | 24 RU', value: '25' },
             { text: '26 EU | 25 RU', value: '26' },
@@ -103,51 +173,8 @@ export const Filters: FC<Props> = ({ className }) => {
             { text: '42 EU | 41 RU', value: '42' },
             { text: '43 EU | 42 RU', value: '43' },
           ]}
-
-          //onClickCheckbox={toggleSizes}
         />
       </div>
-
-      <CheckboxFiltersGroup
-        name='colors'
-        title='Цвет'
-        className='mt-5'
-        limit={2}
-        items={colors}
-        defaultItems={defaultColors}
-        loading={loading}
-        onClickCheckbox={onAddId}
-        selectedIds={selectedIds}
-      />
     </div>
   );
 };
-
-// [
-// 	{ text: 'Белый', value: '1' },
-// 	{ text: 'Бордовый', value: '2' },
-// 	{ text: 'Голубой', value: '3' },
-// 	{ text: 'Желтый', value: '4' },
-// 	{ text: 'Зеленый', value: '5' },
-// 	{ text: 'Коричневый', value: '6' },
-// 	{ text: 'Красный', value: '7' },
-// 	{ text: 'Малиновый', value: '8' },
-// 	{ text: 'Оранжевый', value: '9' },
-// 	{ text: 'Розовый', value: '10' },
-// 	{ text: 'Синий', value: '11' },
-// 	{ text: 'Сиреневый', value: '12' },
-// 	{ text: 'Темно-синий', value: '13' },
-// 	{ text: 'Фиолетовый', value: '14' },
-// 	{ text: 'Черный', value: '15' },
-// ]
-
-// [
-// 	{ text: 'Белый', value: '1' },
-// 	{ text: 'Черный', value: '2' },
-// 	{ text: 'Синий', value: '3' },
-// 	{ text: 'Красный', value: '4' },
-// 	{ text: 'Желтый', value: '5' },
-// 	{ text: 'Зеленый', value: '6' },
-// 	{ text: 'Коричневый', value: '7' },
-// 	{ text: 'Фиолетовый', value: '8' },
-// ]

@@ -4,13 +4,13 @@ import { ProductsGroupList } from '@/components/shared/products-group-list';
 export default function Home() {
   return (
     <>
-      <Container className='mt-10'>
+      <Container className='mt-10 pl-3 pr-3'>
         <Title text='Все пары' size='lg' className='font-extrabold' />
       </Container>
       <TopBar />
       <Container className='mt-10 pb-14 pr-4 pl-4'>
-        <div className=' flex gap-[80px]'>
-          <div className='w-[250px]'>
+        <div className=' flex gap-[30px]'>
+          <div className='min-w-[250px]'>
             <Filters />
           </div>
 

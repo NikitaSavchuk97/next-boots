@@ -5,15 +5,15 @@ import { useSet } from 'react-use';
 interface ReturnProps {
   colors: { value: string; text: string }[]; // Массив всех цветов
   defaultColors: { value: string; text: string }[]; // Массив только с белым и черным
-  selectedIds: Set<string>;
-  onAddId: (id: string) => void;
+  selectedColors: Set<string>;
+  onAddColorValue: (id: string) => void;
   loading: boolean;
 }
 
 export const useFilterColors = (): ReturnProps => {
   const [colors, setColors] = useState<ReturnProps['colors']>([]);
   const [defaultColors, setDefaultColors] = useState<ReturnProps['defaultColors']>([]);
-  const [selectedIds, { toggle }] = useSet(new Set<string>([]));
+  const [selectedColors, { toggle }] = useSet(new Set<string>([]));
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -22,13 +22,13 @@ export const useFilterColors = (): ReturnProps => {
       Api.products
         .searchProducts('')
         .then((data) => {
-          // Создаем массив объектов с id и name
+          // Создаем массив объектов с value и text
           const colorItems = data.map((item, index) => ({
             value: String(index),
             text: item.mainColorRU,
           }));
 
-          // Фильтруем дубликаты по полю name
+          // Фильтруем дубликаты по полю text
           const uniqueColors = colorItems.filter(
             (color, index, self) => index === self.findIndex((c) => c.text === color.text),
           );
@@ -59,5 +59,5 @@ export const useFilterColors = (): ReturnProps => {
     }
   }, []);
 
-  return { colors, defaultColors, loading, onAddId: toggle, selectedIds };
+  return { colors, defaultColors, loading, onAddColorValue: toggle, selectedColors };
 };

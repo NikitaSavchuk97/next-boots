@@ -14,7 +14,7 @@ interface Props {
 }
 export const Header: FC<Props> = ({ className }) => {
   return (
-    <header className={cn('border-b border-gray-100', className)}>
+    <header className={cn('border-b border-gray-100 pl-3 pr-3', className)}>
       <Container className='flex items-center justify-between py-4 border-b-orange-100'>
         <Link href='/'>
           <Image className='rounded-md' src='/logo.png' alt='logo' width={300} height={100} />

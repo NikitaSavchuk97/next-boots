@@ -77,11 +77,11 @@ async function up() {
     data: {
       name: 'Brikenstock Boston Eva Black',
       previewImageUrl:
-        'https://3.downloader.disk.yandex.ru/preview/9596c63110023d23e3a175b8c1d0dc27a238a24cb99aeef9985ecded98c1a685/inf/1JXR3tdAWyit-RxCO0CZ3N2IDqzRi0BWCXFEb2255UByvAtXENyqcXXwOIA6JI4MxjV6A8q7IjY7rYhvIL-Vxg%3D%3D?uid=795455607&filename=Birkenstock-Boston_EVA_Black_womens-black_black-1.webp&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=795455607&tknv=v2&size=1912x1004',
+        'https://2.downloader.disk.yandex.ru/preview/adde5371aac9d74f81a5c1d7c1c397443efed8829dac6979c0b1568b9611c021/inf/7tG8xcto7f2pkzMQmC5faN2IDqzRi0BWCXFEb2255UBzgF7SNQPilVWZ8GIXaSZDmlrjo9kYFVHMxQuVobQj6Q%3D%3D?uid=795455607&filename=Birkenstock-Boston_EVA_Black_womens-black_black-3.webp&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=795455607&tknv=v2&size=1912x1004',
       images: [
+        'https://2.downloader.disk.yandex.ru/preview/adde5371aac9d74f81a5c1d7c1c397443efed8829dac6979c0b1568b9611c021/inf/7tG8xcto7f2pkzMQmC5faN2IDqzRi0BWCXFEb2255UBzgF7SNQPilVWZ8GIXaSZDmlrjo9kYFVHMxQuVobQj6Q%3D%3D?uid=795455607&filename=Birkenstock-Boston_EVA_Black_womens-black_black-3.webp&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=795455607&tknv=v2&size=1912x1004',
         'https://3.downloader.disk.yandex.ru/preview/9596c63110023d23e3a175b8c1d0dc27a238a24cb99aeef9985ecded98c1a685/inf/1JXR3tdAWyit-RxCO0CZ3N2IDqzRi0BWCXFEb2255UByvAtXENyqcXXwOIA6JI4MxjV6A8q7IjY7rYhvIL-Vxg%3D%3D?uid=795455607&filename=Birkenstock-Boston_EVA_Black_womens-black_black-1.webp&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=795455607&tknv=v2&size=1912x1004',
         'https://3.downloader.disk.yandex.ru/preview/3493f3312a56cd67dd7f60719af90524a8e6c3988f9a85fd108522fea2e10c22/inf/o8rl8gdd6tRUDCtJuDpXit2IDqzRi0BWCXFEb2255UAXWvUQlKy92tMpoxYDPdY0Do5incud1gvQ4Bz5_eTbPw%3D%3D?uid=795455607&filename=Birkenstock-Boston_EVA_Black_womens-black_black-2.webp&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=795455607&tknv=v2&size=1912x1004',
-        'https://2.downloader.disk.yandex.ru/preview/adde5371aac9d74f81a5c1d7c1c397443efed8829dac6979c0b1568b9611c021/inf/7tG8xcto7f2pkzMQmC5faN2IDqzRi0BWCXFEb2255UBzgF7SNQPilVWZ8GIXaSZDmlrjo9kYFVHMxQuVobQj6Q%3D%3D?uid=795455607&filename=Birkenstock-Boston_EVA_Black_womens-black_black-3.webp&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=795455607&tknv=v2&size=1912x1004',
       ],
       categoryId: 3,
       male: 'FEMALE',
