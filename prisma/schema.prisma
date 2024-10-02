@@ -73,6 +73,7 @@ model Product {
 	id 																Int @id @default(autoincrement())
 	name															String
 	previewImageUrl										String
+	hoverPreviewImageUrl							String
 	images														String[]
 	brand															String
 	model															String
