@@ -184,7 +184,7 @@ async function up() {
       categoryId: 2,
       male: 'UNISEX',
       brand: 'vans',
-      model: 'knu Skool',
+      model: 'knu skool',
       mainColorEN: 'blue',
       mainColorRU: 'синий',
     },
@@ -207,7 +207,7 @@ async function up() {
       categoryId: 2,
       male: 'CHILD',
       brand: 'vans',
-      model: 'knu Skool',
+      model: 'knu skool',
       mainColorEN: 'black',
       mainColorRU: 'черный',
     },
@@ -361,8 +361,8 @@ async function up() {
         price: randomDecimalNumber(17000, 18000),
         quantityOfProductItem: 2,
         size: 43,
-			},
-			{
+      },
+      {
         productId: VANS_KNU_SKOOL_BLUE_UNISEX.id,
         bootType: 2,
         price: randomDecimalNumber(7000, 7500),
