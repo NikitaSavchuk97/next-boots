@@ -1,12 +1,9 @@
 import { FC } from 'react';
 import { cn } from '@/lib/utils';
+import { ClassNamePropsTypes } from '@/lib/types';
 import { Categories, Container, SortPopup } from '@/components/shared';
 
-interface Props {
-  className?: string;
-}
-
-export const TopBar: FC<Props> = ({ className }) => {
+export const TopBar: FC<ClassNamePropsTypes> = ({ className }) => {
   return (
     <div
       className={cn(

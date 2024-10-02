@@ -1,18 +1,15 @@
 'use client';
 
-import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import { FC, useEffect, useRef, useState } from 'react';
-import { useClickAway, useDebounce } from 'react-use';
-import { Api } from '../../../services/api-client';
+import { cn } from '@/lib/utils';
 import { Search } from 'lucide-react';
 import { Product } from '@prisma/client';
+import { FC, useRef, useState } from 'react';
+import { ClassNamePropsTypes } from '@/lib/types';
+import { Api } from '../../../services/api-client';
+import { useClickAway, useDebounce } from 'react-use';
 
-interface Props {
-  className?: string;
-}
-
-export const SearchInput: FC<Props> = ({ className }) => {
+export const SearchInput: FC<ClassNamePropsTypes> = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [focused, setFocused] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);

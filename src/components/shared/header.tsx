@@ -1,18 +1,14 @@
-import { cn } from '@/lib/utils';
 import { FC } from 'react';
-import { Container } from './container';
-
-import { Button } from '../ui';
-import { ArrowRight, ShoppingCart, User } from 'lucide-react';
-import { SearchInput } from './search-input';
-
 import Link from 'next/link';
 import Image from 'next/image';
+import { Button } from '../ui';
+import { cn } from '@/lib/utils';
+import { Container } from './container';
+import { SearchInput } from './search-input';
+import { ClassNamePropsTypes } from '@/lib/types';
+import { ArrowRight, ShoppingCart, User } from 'lucide-react';
 
-interface Props {
-  className?: string;
-}
-export const Header: FC<Props> = ({ className }) => {
+export const Header: FC<ClassNamePropsTypes> = ({ className }) => {
   return (
     <header className={cn('border-b border-gray-100 pl-3 pr-3', className)}>
       <Container className='flex items-center justify-between py-4 border-b-orange-100'>

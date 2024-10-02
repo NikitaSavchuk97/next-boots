@@ -1,19 +1,18 @@
 import { FC } from 'react';
+import Link from 'next/link';
+import { Button } from '../ui';
+import { Title } from './title';
 import { cn } from '@/lib/utils';
 import { Plus } from 'lucide-react';
-import { Title } from './title';
-import { Button } from '../ui';
+import { ProductCardPropsTypes } from '@/lib/types';
 
-import Link from 'next/link';
-
-interface Props {
-  id: number;
-  name: string;
-  price: number;
-  imageUrl: string;
-  className?: string;
-}
-export const ProductCard: FC<Props> = ({ id, name, price, imageUrl, className }) => {
+export const ProductCard: FC<ProductCardPropsTypes> = ({
+  id,
+  name,
+  price,
+  imageUrl,
+  className,
+}) => {
   return (
     <div
       className={cn(

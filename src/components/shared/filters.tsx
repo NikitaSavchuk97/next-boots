@@ -1,90 +1,37 @@
 'use client';
 
-import QS from 'qs';
+import { FC } from 'react';
 import { cn } from '@/lib/utils';
-import { useSet } from 'react-use';
 import { Input } from '@/components/ui';
 import { RangeSlider } from './range-slider';
-import { FC, useEffect, useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useFilterColors } from '../../../hooks/useFilterColors';
-import { useFilterBrands } from '../../../hooks/useFilterBrands';
+import { ClassNamePropsTypes } from '@/lib/types';
 import { CheckboxFiltersGroup, FilterCheckbox, Title } from '@/components/shared';
+import { useQueryParams, useFilters, useColors, useBrands } from '../../../hooks';
 
-interface Props {
-  className?: string;
-}
+export const Filters: FC<ClassNamePropsTypes> = ({ className }) => {
+  const filters = useFilters();
+  const { colors, defaultColors } = useColors();
+  const { brands, defaultBrands, loading } = useBrands();
 
-interface PriceProps {
-  priceFrom?: number;
-  priceTo?: number;
-}
+  useQueryParams(filters);
 
-interface QueryFilters extends PriceProps {
-  gender: string;
-  stock: string;
-  size: string;
-  color: string;
-  brand: string;
-}
-
-export const Filters: FC<Props> = ({ className }) => {
-  const router = useRouter();
-  const searchParams = useSearchParams() as unknown as Map<keyof QueryFilters, string>;
-  const [inStock, setInStock] = useState<string | undefined>(
-    searchParams.get('stock') === 'true' ? 'true' : undefined,
-  );
-
-  const [prices, setPrice] = useState<PriceProps>({
-    priceFrom: Number(searchParams.get('priceFrom')) || undefined,
-    priceTo: Number(searchParams.get('priceTo')) || undefined,
-  });
-  const [sizes, { toggle: toggleSizes }] = useSet(
-    new Set<string>(searchParams.get('size') ? searchParams.get('size')?.split(',') : []),
-  );
-  const [gender, { toggle: toggleGender }] = useSet(
-    new Set<string>(searchParams.get('gender') ? searchParams.get('gender')?.split(',') : []),
-  );
-  const { brands, defaultBrands, onAddBrandValue, selectedBrands } = useFilterBrands(
-    searchParams.get('brand')?.split(','),
-  );
-  const { colors, defaultColors, loading, onAddColorValue, selectedColors } = useFilterColors(
-    searchParams.get('color')?.split(','),
-  );
-
-  useEffect(() => {
-    const filters = {
-      ...prices,
-      stock: inStock,
-      size: Array.from(sizes),
-      gender: Array.from(gender),
-      brand: Array.from(selectedBrands),
-      color: Array.from(selectedColors),
-    };
-
-    const queryString = QS.stringify(filters, {
-      arrayFormat: 'comma',
-    });
-    router.push(`?${queryString}`, { scroll: false });
-  }, [prices, gender, sizes, brands, colors, selectedBrands, selectedColors, inStock]);
-
-  const updatePrice = (name: keyof PriceProps, value: number) => {
-    setPrice({
-      ...prices,
-      [name]: value,
-    });
+  const updatePrice = (prices: number[]) => {
+    filters.setPrice('priceFrom', prices[0]);
+    filters.setPrice('priceTo', prices[1]);
   };
 
   return (
     <div className={cn('', className)}>
-      <Title text='Фильтрация' size='sm' className=' font-bold' />
+      <Title text='Фильтрация' size='sm' className='mt-2 font-bold' />
 
       <div className='flex flex-col gap-4 border-b  py-6 pb-7'>
         <FilterCheckbox
           text='В наличии'
           value={'stock'}
-          checked={inStock === 'true' ? true : false}
-          onCheckedChange={() => setInStock(inStock === 'true' ? undefined : 'true')}
+          checked={filters.inStock === 'true' ? true : false}
+          onCheckedChange={() =>
+            filters.setInStock(filters.inStock === 'true' ? undefined : 'true')
+          }
         />
       </div>
 
@@ -94,8 +41,8 @@ export const Filters: FC<Props> = ({ className }) => {
           title='Пол'
           className=''
           loading={false}
-          selected={gender}
-          onClickCheckbox={toggleGender}
+          selected={filters.gender}
+          onClickCheckbox={filters.setGender}
           limit={3}
           items={[
             { text: 'Мужчины', value: 'male' },
@@ -113,8 +60,8 @@ export const Filters: FC<Props> = ({ className }) => {
             type='number'
             min={0}
             max={30000}
-            value={String(prices.priceFrom)}
-            onChange={(e) => updatePrice('priceFrom', Number(e.target.value))}
+            value={String(filters.prices.priceFrom)}
+            onChange={(e) => filters.setPrice('priceFrom', Number(e.target.value))}
           />
           <span></span>
           <Input
@@ -122,8 +69,8 @@ export const Filters: FC<Props> = ({ className }) => {
             type='number'
             min={0}
             max={30000}
-            value={String(prices.priceTo)}
-            onChange={(e) => updatePrice('priceTo', Number(e.target.value))}
+            value={String(filters.prices.priceTo)}
+            onChange={(e) => filters.setPrice('priceTo', Number(e.target.value))}
           />
         </div>
 
@@ -131,8 +78,8 @@ export const Filters: FC<Props> = ({ className }) => {
           min={0}
           max={30000}
           step={100}
-          value={[prices.priceFrom || 0, prices.priceTo || 30000]}
-          onValueChange={([priceFrom, priceTo]) => setPrice({ priceFrom, priceTo })}
+          value={[filters.prices.priceFrom || 0, filters.prices.priceTo || 30000]}
+          onValueChange={updatePrice}
         />
       </div>
 
@@ -144,8 +91,8 @@ export const Filters: FC<Props> = ({ className }) => {
           items={brands}
           defaultItems={defaultBrands}
           loading={loading}
-          onClickCheckbox={onAddBrandValue}
-          selected={selectedBrands}
+          onClickCheckbox={filters.setBrand}
+          selected={filters.selectedBrands}
         />
       </div>
 
@@ -158,8 +105,8 @@ export const Filters: FC<Props> = ({ className }) => {
           items={colors}
           defaultItems={defaultColors}
           loading={loading}
-          onClickCheckbox={onAddColorValue}
-          selected={selectedColors}
+          onClickCheckbox={filters.setColors}
+          selected={filters.selectedColors}
         />
       </div>
 
@@ -171,8 +118,8 @@ export const Filters: FC<Props> = ({ className }) => {
           className=''
           loading={false}
           limit={7}
-          selected={sizes}
-          onClickCheckbox={toggleSizes}
+          selected={filters.sizes}
+          onClickCheckbox={filters.setSize}
           items={sizeArr}
           defaultItems={defaultSizeArr}
         />
@@ -204,6 +151,7 @@ const sizeArr = [
   { text: '44 EU | 43 RU', value: '44' },
   { text: '45 EU | 44 RU', value: '45' },
   { text: '46 EU | 45 RU', value: '46' },
+  { text: '47 EU | 46 RU', value: '47' },
 ];
 
 const defaultSizeArr = [

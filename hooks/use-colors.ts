@@ -1,20 +1,11 @@
-import { useSet } from 'react-use';
 import { useEffect, useState } from 'react';
 import { Api } from '../services/api-client';
+import { ColorsReturnPropsTypes } from '@/lib/types';
 
-interface ReturnProps {
-  colors: { value: string; text: string }[]; // Массив всех цветов
-  defaultColors: { value: string; text: string }[]; // Массив только с белым и черным
-  selectedColors: Set<string>;
-  onAddColorValue: (id: string) => void;
-  loading: boolean;
-}
-
-export const useFilterColors = (colorsSelectedBeforeReload: string[] = []): ReturnProps => {
-  const [colors, setColors] = useState<ReturnProps['colors']>([]);
-  const [defaultColors, setDefaultColors] = useState<ReturnProps['defaultColors']>([]);
-  const [selectedColors, { toggle }] = useSet(new Set<string>(colorsSelectedBeforeReload));
+export const useColors = (): ColorsReturnPropsTypes => {
   const [loading, setLoading] = useState(true);
+  const [colors, setColors] = useState<ColorsReturnPropsTypes['colors']>([]);
+  const [defaultColors, setDefaultColors] = useState<ColorsReturnPropsTypes['defaultColors']>([]);
 
   useEffect(() => {
     try {
@@ -58,5 +49,5 @@ export const useFilterColors = (colorsSelectedBeforeReload: string[] = []): Retu
       setLoading(false);
     }
   }, []);
-  return { colors, defaultColors, loading, onAddColorValue: toggle, selectedColors };
+  return { colors, defaultColors, loading };
 };

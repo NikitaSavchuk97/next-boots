@@ -1,12 +1,9 @@
 import { FC } from 'react';
 import { cn } from '@/lib/utils';
 import { ArrowUpDown } from 'lucide-react';
+import { ClassNamePropsTypes } from '@/lib/types';
 
-interface Props {
-  className?: string;
-}
-
-export const SortPopup: FC<Props> = ({ className }) => {
+export const SortPopup: FC<ClassNamePropsTypes> = ({ className }) => {
   return (
     <div
       className={cn(

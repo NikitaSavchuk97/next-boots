@@ -1,28 +1,13 @@
-import { useSet } from 'react-use';
 import { useEffect, useState } from 'react';
 import { Api } from '../services/api-client';
+import { BrandsReturnPropsTypes } from '@/lib/types';
 
-interface ReturnProps {
-  brands: { value: string; text: string }[]; // Массив всех брендов
-  defaultBrands: { value: string; text: string }[]; // Массив только с определенными брендами
-  selectedBrands: Set<string>;
-  onAddBrandValue: (id: string) => void;
-  loading: boolean;
-}
-
-export const useFilterBrands = (brandsSelectedBeforeReload: string[] = []): ReturnProps => {
-  const [brands, setBrands] = useState<ReturnProps['brands']>([]);
-  const [defaultBrands, setDefaultBrands] = useState<ReturnProps['defaultBrands']>([]);
-  const [selectedBrands, { toggle }] = useSet(new Set<string>(brandsSelectedBeforeReload));
+export const useBrands = (): BrandsReturnPropsTypes => {
   const [loading, setLoading] = useState(true);
-  const defaultItems = ['nike', 'adidas', 'puma', 'reebok', 'vans'];
+  const [brands, setBrands] = useState<BrandsReturnPropsTypes['brands']>([]);
+  const [defaultBrands, setDefaultBrands] = useState<BrandsReturnPropsTypes['defaultBrands']>([]);
 
-  const capitalizeWords = (str: string) => {
-    return str
-      .split(' ') // Разбиваем строку на слова
-      .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1)) // Делаем первую букву заглавной
-      .join(' '); // Объединяем слова обратно в строку
-  };
+  const defaultItems = ['nike', 'adidas', 'puma', 'reebok', 'vans'];
 
   useEffect(() => {
     try {
@@ -62,5 +47,13 @@ export const useFilterBrands = (brandsSelectedBeforeReload: string[] = []): Retu
       setLoading(false);
     }
   }, []);
-  return { brands, defaultBrands, loading, onAddBrandValue: toggle, selectedBrands };
+
+  const capitalizeWords = (str: string) => {
+    return str
+      .split(' ') // Разбиваем строку на слова
+      .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1)) // Делаем первую букву заглавной
+      .join(' '); // Объединяем слова обратно в строку
+  };
+
+  return { brands, defaultBrands, loading };
 };

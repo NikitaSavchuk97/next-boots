@@ -1,30 +1,19 @@
 'use client';
 
-import { useState, useEffect, forwardRef, RefObject, Fragment } from 'react';
-import * as SliderPrimitive from '@radix-ui/react-slider';
-
 import { cn } from '@/lib/utils';
-
-type SliderProps = {
-  className?: string;
-  min: number;
-  max: number;
-  step: number;
-  formatLabel?: (value: number) => string;
-  value?: number[] | readonly number[];
-  onValueChange?: (values: number[]) => void;
-};
+import { SliderPropsTypes } from '@/lib/types';
+import * as SliderPrimitive from '@radix-ui/react-slider';
+import { useState, useEffect, forwardRef, RefObject, Fragment } from 'react';
 
 const RangeSlider = forwardRef(
   (
-    { className, min, max, step, formatLabel, value, onValueChange, ...props }: SliderProps,
+    { className, min, max, step, formatLabel, value, onValueChange, ...props }: SliderPropsTypes,
     ref,
   ) => {
     const initialValue = Array.isArray(value) ? value : [min, max];
     const [localValues, setLocalValues] = useState(initialValue);
 
     useEffect(() => {
-      // Update localValues when the external value prop changes
       setLocalValues(Array.isArray(value) ? value : [min, max]);
     }, [min, max, value]);
 
@@ -59,9 +48,7 @@ const RangeSlider = forwardRef(
               }}
             ></div>
 
-            <SliderPrimitive.Thumb className='flex flex-col items-center h-4 w-4 rounded-full border border-primary/50 bg-white shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50'>
-              
-            </SliderPrimitive.Thumb>
+            <SliderPrimitive.Thumb className='flex flex-col items-center h-4 w-4 rounded-full border border-primary/50 bg-white shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50'></SliderPrimitive.Thumb>
           </Fragment>
         ))}
       </SliderPrimitive.Root>

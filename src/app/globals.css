@@ -35,3 +35,22 @@ html {
     --chart-5: 27 87% 67%;
   }
 }
+
+::-webkit-scrollbar {
+  width: 5px; /* Ширина скроллбара */
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(210 40% 96.1%); /* Цвет фона трека */
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(72, 116, 211); /* Цвет ползунка */
+  /* background: hsla(221.2 83.2% 53.3%); */
+  border-radius: 10px; /* Закругление углов ползунка */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsla(221.2 83.2% 53.3%); /* Цвет ползунка при наведении */
+  cursor: pointer;
+}
