@@ -1,59 +1,9 @@
 import { ReactNode } from 'react';
 
-export interface ClassNamePropsTypes {
-  className?: string;
-}
-
 export interface BrandsReturnPropsTypes {
   brands: { value: string; text: string }[];
   defaultBrands: { value: string; text: string }[];
   loading: boolean;
-}
-
-export interface ColorsReturnPropsTypes {
-  colors: { value: string; text: string }[];
-  defaultColors: { value: string; text: string }[];
-  loading: boolean;
-}
-
-export interface PricePropsTypes {
-  priceFrom?: number;
-  priceTo?: number;
-}
-
-export interface QueryFiltersPropsTypes extends PricePropsTypes {
-  gender: string;
-  stock: string;
-  size: string;
-  color: string;
-  brand: string;
-}
-
-export interface UseFiltersPropsTypes {
-  sizes: Set<string>;
-  prices: PricePropsTypes;
-  gender: Set<string>;
-  inStock: string | undefined;
-  selectedColors: Set<string>;
-  selectedBrands: Set<string>;
-}
-
-export interface UseFiltersReturnPropsTypes extends UseFiltersPropsTypes {
-  setInStock: (key: string | undefined) => void;
-  setSize: (key: string) => void;
-  setBrand: (key: string) => void;
-  setGender: (key: string) => void;
-  setColors: (key: string) => void;
-  setPrice: (key: keyof PricePropsTypes, value: number) => void;
-}
-
-export interface FilterChecboxPropsTypes {
-  text: string;
-  value: string;
-  endAdornment?: ReactNode;
-  onCheckedChange?: (checked: boolean) => void;
-  checked?: boolean;
-  name?: string;
 }
 
 export interface CheckboxFiltersGroupPropsTypes {
@@ -69,6 +19,30 @@ export interface CheckboxFiltersGroupPropsTypes {
   selected?: Set<string>;
   className?: string;
   name: string;
+}
+
+export interface ClassNamePropsTypes {
+  className?: string;
+}
+
+export interface ColorsReturnPropsTypes {
+  colors: { value: string; text: string }[];
+  defaultColors: { value: string; text: string }[];
+  loading: boolean;
+}
+
+export interface FilterChecboxPropsTypes {
+  text: string;
+  value: string;
+  endAdornment?: ReactNode;
+  onCheckedChange?: (checked: boolean) => void;
+  checked?: boolean;
+  name?: string;
+}
+
+export interface PricePropsTypes {
+  priceFrom?: number;
+  priceTo?: number;
 }
 
 export interface ProductCardPropsTypes {
@@ -87,6 +61,14 @@ export interface ProductsGroupListPropsTypes {
   listClassName?: string;
 }
 
+export interface QueryFiltersPropsTypes extends PricePropsTypes {
+  gender: string;
+  stock: string;
+  size: string;
+  color: string;
+  brand: string;
+}
+
 export interface SliderPropsTypes {
   className?: string;
   min: number;
@@ -101,4 +83,22 @@ export interface TitlePropsTypes {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
   className?: string;
   text: string;
+}
+
+export interface UseFiltersPropsTypes {
+  sizes: Set<string>;
+  prices: PricePropsTypes;
+  gender: Set<string>;
+  inStock: string | undefined;
+  selectedColors: Set<string>;
+  selectedBrands: Set<string>;
+}
+
+export interface UseFiltersReturnPropsTypes extends UseFiltersPropsTypes {
+  setInStock: (key: string | undefined) => void;
+  setSize: (key: string) => void;
+  setBrand: (key: string) => void;
+  setGender: (key: string) => void;
+  setColors: (key: string) => void;
+  setPrice: (key: keyof PricePropsTypes, value: number) => void;
 }
