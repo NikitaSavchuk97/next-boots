@@ -30,9 +30,9 @@ async function up() {
     data: categories,
   });
 
-  const AIR_FORCE_1_MEDIUM_OLIVE_BLACK_STARFISH_MEN = await prisma.product.create({
+  const AIR_FORCE_1_MEDIUM_STARFISH_OLIVE_BLACK_MEN = await prisma.product.create({
     data: {
-      name: 'Nike Air Force 1 Olive|Black Starfish',
+      name: 'Nike Air Force 1 Starfish Olive|Black ',
       previewImageUrl:
         'https://2.downloader.disk.yandex.ru/preview/9b413d6a2608e8e9a35a8980dc87db2d0d0d286d72707fac26e7680b02667c9f/inf/LVHP5rVzHUlk4w70FHf3i4w0yhTcE9L0TEThS-xrUL6ET92LKG16aqVQpQIxqWrpSeeOn0ag3bbnb2SIoRCEjg%3D%3D?uid=795455607&filename=nike-AIR_FORCE_1_07-MEDIUM_OLIVE_BLACK_STARFISH-3.webp&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=795455607&tknv=v2&size=1912x1004',
       hoverPreviewImageUrl:
@@ -216,28 +216,28 @@ async function up() {
   await prisma.productItem.createMany({
     data: [
       {
-        productId: AIR_FORCE_1_MEDIUM_OLIVE_BLACK_STARFISH_MEN.id,
+        productId: AIR_FORCE_1_MEDIUM_STARFISH_OLIVE_BLACK_MEN.id,
         bootType: 1,
         price: randomDecimalNumber(11000, 12000),
         quantityOfProductItem: 5,
         size: 39,
       },
       {
-        productId: AIR_FORCE_1_MEDIUM_OLIVE_BLACK_STARFISH_MEN.id,
+        productId: AIR_FORCE_1_MEDIUM_STARFISH_OLIVE_BLACK_MEN.id,
         bootType: 1,
         price: randomDecimalNumber(12000, 13000),
         quantityOfProductItem: 3,
         size: 40,
       },
       {
-        productId: AIR_FORCE_1_MEDIUM_OLIVE_BLACK_STARFISH_MEN.id,
+        productId: AIR_FORCE_1_MEDIUM_STARFISH_OLIVE_BLACK_MEN.id,
         bootType: 1,
         price: randomDecimalNumber(13000, 14000),
         quantityOfProductItem: 7,
         size: 41,
       },
       {
-        productId: AIR_FORCE_1_MEDIUM_OLIVE_BLACK_STARFISH_MEN.id,
+        productId: AIR_FORCE_1_MEDIUM_STARFISH_OLIVE_BLACK_MEN.id,
         bootType: 1,
         price: randomDecimalNumber(14000, 15000),
         quantityOfProductItem: 2,
