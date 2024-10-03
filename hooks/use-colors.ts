@@ -10,20 +10,18 @@ export const useColors = (): ColorsReturnPropsTypes => {
   useEffect(() => {
     try {
       setLoading(true);
-      Api.products
-        .searchProducts('')
+      Api.colors
+        .getColors()
         .then((data) => {
           // Создаем массив объектов с value и text
           const colorItems = data.map((item) => ({
             value: item.mainColorEN,
             text: item.mainColorRU,
           }));
-
           // Фильтруем дубликаты по полю text
           const uniqueColors = colorItems.filter(
             (color, index, self) => index === self.findIndex((c) => c.text === color.text),
           );
-
           // Сортируем массив по алфавиту и делаем первую букву заглавной
           const sortedColors = uniqueColors
             .map((color) => ({
@@ -31,13 +29,11 @@ export const useColors = (): ColorsReturnPropsTypes => {
               text: color.text.charAt(0).toUpperCase() + color.text.slice(1),
             }))
             .sort((a, b) => a.text.localeCompare(b.text));
-
           // Фильтруем только белый и черный цвета
           const filteredBlackAndWhite = sortedColors.filter(
             (color) =>
               color.text.toLowerCase() === 'белый' || color.text.toLowerCase() === 'черный',
           );
-
           // Устанавливаем состояния
           setColors(sortedColors);
           setDefaultColors(filteredBlackAndWhite);

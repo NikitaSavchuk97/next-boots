@@ -15,10 +15,6 @@ export const SearchInput: FC<ClassNamePropsTypes> = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const ref = useRef(null);
 
-  useClickAway(ref, () => {
-    setFocused(false);
-  });
-
   useDebounce(
     async () => {
       try {
@@ -30,7 +26,7 @@ export const SearchInput: FC<ClassNamePropsTypes> = () => {
         console.error(e);
       }
     },
-    500,
+    200,
     [searchQuery, focused],
   );
 
@@ -39,6 +35,11 @@ export const SearchInput: FC<ClassNamePropsTypes> = () => {
     setSearchQuery('');
     setProducts([]);
   };
+
+  useClickAway(ref, () => {
+    setFocused(false);
+    setProducts([]);
+  });
 
   return (
     <>

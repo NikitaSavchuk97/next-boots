@@ -1,9 +1,10 @@
-import { FC } from 'react';
 import Link from 'next/link';
 import { Button } from '../ui';
 import { Title } from './title';
 import { cn } from '@/lib/utils';
+import { FC, useRef } from 'react';
 import { Plus } from 'lucide-react';
+import { useHoverDirty } from 'react-use';
 import { ProductCardPropsTypes } from '@/lib/types';
 
 export const ProductCard: FC<ProductCardPropsTypes> = ({
@@ -11,17 +12,26 @@ export const ProductCard: FC<ProductCardPropsTypes> = ({
   name,
   price,
   imageUrl,
+  hoverImageUrl,
   className,
 }) => {
+  const ref = useRef(null);
+  const hovered = useHoverDirty(ref);
+
   return (
     <div
+      ref={ref}
       className={cn(
         'min-w-[230px] rounded-xl bg-secondary transition-all border hover:border-blue-500 hover:scale-105 ',
         className,
       )}
     >
       <Link href={`/product/${id}`} className='flex justify-center rounded-lg w-full'>
-        <img className='rounded-xl w-full h-[270px] object-cover' src={imageUrl} alt='Logo' />
+        <img
+          className='rounded-xl w-full h-[270px] object-cover'
+          src={hovered ? hoverImageUrl : imageUrl}
+          alt='Logo'
+        />
       </Link>
 
       <div className='px-3'>

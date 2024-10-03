@@ -48,7 +48,7 @@ async function up() {
       male: 'MALE',
       brand: 'nike',
       model: 'air force 1',
-      mainColorEN: 'olive',
+      mainColorEN: 'khaki',
       mainColorRU: 'хаки',
     },
   });
@@ -146,7 +146,7 @@ async function up() {
 
   const DR_MARTENS_1460_SMOOTH_LEATHER_UNISEX = await prisma.product.create({
     data: {
-      name: 'Dr.Martens 1460 Smooth Leather Black',
+      name: 'Dr Martens 1460 Smooth Leather Black',
       previewImageUrl:
         'https://2.downloader.disk.yandex.ru/preview/6c0af223fa0e256fb81e5d1f677856eaab4ec38f8a9d7553eb7bdd4fa84782a3/inf/KUuYUrj0nl8U88RYp32eXkMsOTI-QVvpDzFEOPyP02RaihKDGz-JTXv9sUzW7A4fmoThUeWJRhjojKXFqGHiHQ%3D%3D?uid=795455607&filename=DR_MARTENS_1460_SMOOTH_LEATHER_UNISEX_1.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=795455607&tknv=v2&size=1912x1002',
       hoverPreviewImageUrl:
@@ -160,7 +160,7 @@ async function up() {
       ],
       categoryId: 4,
       male: 'UNISEX',
-      brand: 'dr.martens',
+      brand: 'dr martens',
       model: '1460',
       mainColorEN: 'black',
       mainColorRU: 'черный',

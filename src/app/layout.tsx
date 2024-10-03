@@ -1,6 +1,6 @@
+import './globals.css';
 import type { Metadata } from 'next';
 import { Rubik } from 'next/font/google';
-import './globals.css';
 import { Header } from '@/components/shared';
 import favicon from '../../public/favicon.ico';
 

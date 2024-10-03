@@ -12,11 +12,11 @@ export const useBrands = (): BrandsReturnPropsTypes => {
   useEffect(() => {
     try {
       setLoading(true);
-      Api.products
-        .searchProducts('')
+      Api.brands
+        .getBrands()
         .then((data) => {
-          // Создаем массив объектов с value и text
-          const brandItems = data.map((item, index) => item.brand);
+          // Создаем массив строк
+          const brandItems = data.map((item) => item.brand);
 
           // Фильтруем дубликаты
           const uniqueBrands = brandItems.filter(

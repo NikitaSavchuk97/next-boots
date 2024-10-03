@@ -50,6 +50,7 @@ export interface ProductCardPropsTypes {
   name: string;
   price: number;
   imageUrl: string;
+  hoverImageUrl: string;
   className?: string;
 }
 
