@@ -18,7 +18,7 @@ export default async function Home() {
       <Container className='mt-10 pl-3 pr-3'>
         <Title text='Все пары' size='lg' className='font-extrabold' />
       </Container>
-      <TopBar />
+      <TopBar categories={categories.filter((category) => category.products.length > 0)} />
       <Container className='mt-10 pb-14 pr-4 pl-4'>
         <div className=' flex gap-[30px]'>
           <div className='min-w-[250px]'>
