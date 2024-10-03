@@ -3,6 +3,7 @@ import { prisma } from '../../../../../prisma/prisma-client';
 
 export async function GET(req: NextRequest) {
   const query = req.nextUrl.searchParams.get('query') || '';
+
   const products = await prisma.product.findMany({
     where: {
       name: {
@@ -10,23 +11,8 @@ export async function GET(req: NextRequest) {
         mode: 'insensitive',
       },
     },
+    take: 5,
   });
-  const randomProducts = products.sort(() => 0.5 - Math.random()).slice(0, 5);
-  return NextResponse.json(randomProducts);
+
+  return NextResponse.json(products);
 }
-
-// export async function GET(req: NextRequest) {
-//   const query = req.nextUrl.searchParams.get('query') || '';
-
-//   const products = await prisma.product.findMany({
-//     where: {
-//       name: {
-//         contains: query,
-//         mode: 'insensitive',
-//       },
-//     },
-//     take: 5,
-//   });
-
-//   return NextResponse.json(products);
-// }

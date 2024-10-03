@@ -18,9 +18,11 @@ export const SearchInput: FC<ClassNamePropsTypes> = () => {
   useDebounce(
     async () => {
       try {
-        if (focused) {
+        if (focused && searchQuery) {
           const responce = await Api.products.searchProducts(searchQuery);
           setProducts(responce);
+        } else if (!searchQuery) {
+          setProducts([]);
         }
       } catch (e) {
         console.error(e);

@@ -33,7 +33,7 @@ export const ProductsGroupList: FC<ProductsGroupListPropsTypes> = ({
 
       <div
         className={cn(
-          'grid md:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4 2xl:grid-cols-5 gap-5 ',
+          'grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-5 ',
           listClassName,
         )}
       >
@@ -43,9 +43,9 @@ export const ProductsGroupList: FC<ProductsGroupListPropsTypes> = ({
               key={product.id}
               id={product.id}
               name={product.name}
+              items={product.items}
               imageUrl={product.previewImageUrl}
               hoverImageUrl={product.hoverPreviewImageUrl}
-              price={product.items[0].price}
             />
           );
         })}

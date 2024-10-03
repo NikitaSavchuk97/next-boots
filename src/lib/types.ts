@@ -1,3 +1,4 @@
+import { ProductItem } from '@prisma/client';
 import { ReactNode } from 'react';
 
 export interface BrandsReturnPropsTypes {
@@ -48,7 +49,7 @@ export interface PricePropsTypes {
 export interface ProductCardPropsTypes {
   id: number;
   name: string;
-  price: number;
+  items: ProductItem[];
   imageUrl: string;
   hoverImageUrl: string;
   className?: string;
