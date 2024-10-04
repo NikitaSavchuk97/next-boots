@@ -63,7 +63,6 @@ export const Filters: FC<ClassNamePropsTypes> = ({ className }) => {
             value={String(filters.prices.priceFrom)}
             onChange={(e) => filters.setPrice('priceFrom', Number(e.target.value))}
           />
-          <span></span>
           <Input
             placeholder='30000'
             type='number'

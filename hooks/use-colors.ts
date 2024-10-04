@@ -18,12 +18,9 @@ export const useColors = (): ColorsReturnPropsTypes => {
             value: item.mainColorEN,
             text: item.mainColorRU,
           }));
-          // Фильтруем дубликаты по полю text
-          const uniqueColors = colorItems.filter(
-            (color, index, self) => index === self.findIndex((c) => c.text === color.text),
-          );
+
           // Сортируем массив по алфавиту и делаем первую букву заглавной
-          const sortedColors = uniqueColors
+          const sortedColors = colorItems
             .map((color) => ({
               value: color.value,
               text: color.text.charAt(0).toUpperCase() + color.text.slice(1),

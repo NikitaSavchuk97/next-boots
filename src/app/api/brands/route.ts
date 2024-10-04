@@ -6,6 +6,7 @@ export async function GET() {
     select: {
       brand: true,
     },
+    distinct: ['brand'],
   });
 
   return NextResponse.json(brands);

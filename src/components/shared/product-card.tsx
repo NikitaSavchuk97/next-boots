@@ -63,9 +63,7 @@ export const ProductCard: FC<ProductCardPropsTypes> = ({
           }`}
         >
           <span className='ml-1 mr-1'>EU:</span>
-          <div
-            className={`flex max-w-[300px] flex-wrap text-center `}
-          >
+          <div className={`flex max-w-[300px] flex-wrap text-center `}>
             {items.map((product: ProductItem) => (
               <span className='ml-1 mr-1' key={product.id}>
                 {product.size}

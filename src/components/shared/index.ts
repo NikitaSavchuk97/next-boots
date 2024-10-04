@@ -6,5 +6,6 @@ export { Container } from './container';
 export { SortPopup } from './sort-popup';
 export { Categories } from './categories';
 export { SearchInput } from './search-input';
+export { ProductImages } from './productImages';
 export { FilterCheckbox } from './filter-checkbox';
 export { CheckboxFiltersGroup } from './checkbox-filters-group';

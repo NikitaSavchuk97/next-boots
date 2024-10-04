@@ -18,13 +18,8 @@ export const useBrands = (): BrandsReturnPropsTypes => {
           // Создаем массив строк
           const brandItems = data.map((item) => item.brand);
 
-          // Фильтруем дубликаты
-          const uniqueBrands = brandItems.filter(
-            (brand, index, self) => index === self.findIndex((b) => b === brand),
-          );
-
           // Сортируем и капитализируем бренды
-          const sortedBrands = uniqueBrands
+          const sortedBrands = brandItems
             .map((brand) => ({
               value: brand,
               text: capitalizeWords(brand),

@@ -7,7 +7,8 @@ export async function GET() {
       mainColorEN: true,
       mainColorRU: true,
     },
+    distinct: ['mainColorEN', 'mainColorRU'],
   });
 
-  return NextResponse.json(colors);
+	return NextResponse.json(colors);
 }

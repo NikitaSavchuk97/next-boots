@@ -28,7 +28,7 @@ export const ProductsGroupList: FC<ProductsGroupListPropsTypes> = ({
   }, [title, categotyId, intersection?.isIntersecting]);
 
   return (
-    <div className={cn('w-full', className)} id={title} ref={intersectionRef}>
+    <div className={cn('w-full ', className)} id={title} ref={intersectionRef}>
       <Title text={title} size='lg' className='font-extrabold mb-6' />
 
       <div
