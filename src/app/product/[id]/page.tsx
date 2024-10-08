@@ -11,8 +11,8 @@ const ProductPage = async ({ params: { id } }: { params: { id: string } }) => {
   }
 
   return (
-    <Container className='flex flex-col my-10'>
-      <ProductImages src={product.images} className='' />
+    <Container className='flex flex-col my-10 pr-5 pl-5'>
+      <ProductImages images={product.images} className='' />
     </Container>
   );
 };

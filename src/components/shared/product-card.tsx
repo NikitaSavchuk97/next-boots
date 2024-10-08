@@ -1,18 +1,19 @@
-import { FC, useRef } from 'react';
+'use client';
+
 import Link from 'next/link';
-import { Button } from '../ui';
+import Image from 'next/image';
 import { Title } from './title';
 import { cn } from '@/lib/utils';
-import { Plus } from 'lucide-react';
+import { FC, useRef } from 'react';
 import { useHoverDirty } from 'react-use';
 import { ProductItem } from '@prisma/client';
 import { ProductCardPropsTypes } from '@/lib/types';
-import Image from 'next/image';
 
 export const ProductCard: FC<ProductCardPropsTypes> = ({
   id,
   name,
   items,
+  images,
   imageUrl,
   hoverImageUrl,
   className,
@@ -32,20 +33,26 @@ export const ProductCard: FC<ProductCardPropsTypes> = ({
       href={`/product/${id}`}
       ref={ref}
       className={cn(
-        ' rounded-xl transition-all box-border hover:shadow-xl bg-white border border-white hover:border-blue-500 hover:scale-105 ',
+        ' rounded-xl transition-all duration-500 hover:shadow-2xl bg-white border  hover:border-blue-500 hover:scale-[1.03]',
         className,
       )}
     >
       <div className='flex justify-center rounded-lg max-w-[300px] w-full h-auto overflow-hidden relative ml-auto mr-auto'>
-        <img
-          className={`rounded-xl  w-full h-auto opacity-1 transition-all opacity-1 absolute ${
+        <Image
+          width={100}
+          height={100}
+          className={`rounded-xl w-full h-auto opacity-1 transition-all opacity-1 duration-500 absolute ${
             hovered ? 'opacity-0' : ''
           }`}
+          //src={`uploads/${images[0]}`}
           src={imageUrl}
           alt={name}
         />
-        <img
+        <Image
+          width={100}
+          height={100}
           className={`rounded-xl  w-full h-auto transition-all `}
+          //src={`uploads/${images[1]}`}
           src={hoverImageUrl}
           alt={name}
         />
@@ -58,7 +65,7 @@ export const ProductCard: FC<ProductCardPropsTypes> = ({
         <Title text={name} size='xs' className='mb-1 text-center' />
 
         <div
-          className={`flex items-center justify-center opacity-1 transition-all ${
+          className={`flex items-center justify-center opacity-1 transition-all duration-500 ${
             hovered ? '' : 'opacity-0'
           }`}
         >

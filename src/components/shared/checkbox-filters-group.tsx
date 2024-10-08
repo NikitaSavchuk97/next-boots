@@ -50,7 +50,7 @@ export const CheckboxFiltersGroup: FC<CheckboxFiltersGroupPropsTypes> = ({
           <Input
             onChange={(e) => onChangeSearchValue(e.target.value)}
             placeholder={searchInputPlaceholder}
-            className='bg-gray-50 border-none'
+            className='bg-gray-200 border-none'
           />
         </div>
       )}

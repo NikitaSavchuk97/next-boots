@@ -1,9 +1,11 @@
-import * as brands from './brands';
-import * as colors from './colors';
-import * as products from './products';
+import * as getBrands from './getBrands';
+import * as getColors from './getColors';
+import * as postProduct from './postProduct';
+import * as getProducts from './getSearchProducts';
 
 export const Api = {
-  brands,
-  colors,
-  products,
+  getBrands,
+  getColors,
+	getProducts,
+	postProduct,
 };

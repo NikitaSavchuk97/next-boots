@@ -12,7 +12,7 @@ export const useBrands = (): BrandsReturnPropsTypes => {
   useEffect(() => {
     try {
       setLoading(true);
-      Api.brands
+      Api.getBrands
         .getBrands()
         .then((data) => {
           // Создаем массив строк

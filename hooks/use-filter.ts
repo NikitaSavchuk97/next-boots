@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { useSet } from 'react-use';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { PricePropsTypes, QueryFiltersPropsTypes, UseFiltersReturnPropsTypes } from '@/lib/types';
 
 export const useFilters = (): UseFiltersReturnPropsTypes => {
-  const router = useRouter();
   const searchParams = useSearchParams() as unknown as Map<keyof QueryFiltersPropsTypes, string>;
 
   const [selectedBrands, { toggle: toggleBrands }] = useSet(

@@ -50,6 +50,7 @@ export interface ProductCardPropsTypes {
   id: number;
   name: string;
   items: ProductItem[];
+  images: string[];
   imageUrl: string;
   hoverImageUrl: string;
   className?: string;

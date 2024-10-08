@@ -10,7 +10,7 @@ export const useColors = (): ColorsReturnPropsTypes => {
   useEffect(() => {
     try {
       setLoading(true);
-      Api.colors
+      Api.getColors
         .getColors()
         .then((data) => {
           // Создаем массив объектов с value и text

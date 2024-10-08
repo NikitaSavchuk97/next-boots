@@ -19,7 +19,7 @@ export const SearchInput: FC<ClassNamePropsTypes> = () => {
     async () => {
       try {
         if (focused && searchQuery) {
-          const responce = await Api.products.searchProducts(searchQuery);
+          const responce = await Api.getProducts.getSearchProducts(searchQuery);
           setProducts(responce);
         } else if (!searchQuery) {
           setProducts([]);
@@ -53,7 +53,7 @@ export const SearchInput: FC<ClassNamePropsTypes> = () => {
       >
         <Search className='absolute top=1/2 translate-y-[55%] left-3 h-5 text-gray-400' />
         <input
-          className='rounded-2xl outline-none w-full bg-gray-100 pl-11'
+          className='rounded-2xl outline-none w-full bg-gray-200 pl-11'
           type='text'
           placeholder='Найти пару...'
           onFocus={() => setFocused(true)}

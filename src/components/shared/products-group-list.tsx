@@ -25,7 +25,7 @@ export const ProductsGroupList: FC<ProductsGroupListPropsTypes> = ({
     if (intersection?.isIntersecting) {
       setActiveCategoryId(categotyId);
     }
-  }, [title, categotyId, intersection?.isIntersecting]);
+  }, [title, categotyId, intersection?.isIntersecting, setActiveCategoryId]);
 
   return (
     <div className={cn('w-full ', className)} id={title} ref={intersectionRef}>
@@ -40,6 +40,7 @@ export const ProductsGroupList: FC<ProductsGroupListPropsTypes> = ({
         {items.map((product) => {
           return (
             <ProductCard
+              images={product.images}
               key={product.id}
               id={product.id}
               name={product.name}
