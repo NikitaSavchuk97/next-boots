@@ -13,7 +13,13 @@ export const Header: FC<ClassNamePropsTypes> = ({ className }) => {
     <header className={cn('border-b border-gray-100 pl-3 pr-3', className)}>
       <Container className='flex items-center justify-between py-4 border-b-orange-100'>
         <Link href='/'>
-          <Image className='rounded-md' src='/logo.png' alt='logo' width={300} height={100} />
+          <Image
+            className='rounded-md h-auto'
+            src='/logo.png'
+            alt='logo'
+            width={300}
+            height={100}
+          />
         </Link>
 
         <div className='mx-10 flex-1'>

@@ -1,4 +1,4 @@
-import { prisma } from '../../prisma/prisma-client';
+import { prisma } from '../../../prisma/prisma-client';
 import { Container, Filters, Title, TopBar } from '@/components/shared';
 import { ProductsGroupList } from '@/components/shared/products-group-list';
 
@@ -31,8 +31,8 @@ export default async function Home() {
                 return (
                   category.products.length > 0 && (
                     <ProductsGroupList
-                      title={category.name}
                       key={category.id}
+                      title={category.name}
                       categotyId={category.id}
                       items={category.products}
                     />

@@ -15,15 +15,16 @@ import { useHoverDirty } from 'react-use';
 interface Props {
   className?: string;
   images: string[];
+  modal: boolean;
 }
 
-export const ProductImages: FC<Props> = ({ images, className }) => {
+export const ProductImages: FC<Props> = ({ images, className, modal = false }) => {
   const ref = useRef(null);
   const hovered = useHoverDirty(ref);
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
-  const [hasError, setHasError] = useState(false);
+  //const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     if (!api) {
@@ -43,26 +44,28 @@ export const ProductImages: FC<Props> = ({ images, className }) => {
       className='flex flex-row justify-center max-w-[700px] max-h-[575px] transition-all duration-500 relative hover:scale-[1.03]'
       ref={ref}
     >
-      <div
-        className={` hidden sm:flex flex-col min-w-22 mr-4 max-h-[100%] rounded-lg border  transition-all duration-500 ${
-          hovered ? ' border-blue-500 shadow-2xl' : ''
-        }`}
-      >
-        {images.map((item, index) => (
-          <Image
-            key={index}
-            src={item}
-            width={1500}
-            height={1500}
-            alt={'Фото товара'}
-            onClick={() => api?.scrollTo(index)}
-            onError={() => setHasError(true)}
-            className={`min-w-16 min-h-16 max-w-20 max-h-20 mx-2 mt-2 cursor-pointer rounded-xl border  transition-all duration-500 ${
-              index === current - 1 && hovered ? 'border-blue-500 shadow-2xl' : ''
-            }`}
-          />
-        ))}
-      </div>
+      {!modal && (
+        <div
+          className={` hidden sm:flex flex-col min-w-22 mr-4  rounded-lg border transition-all duration-500  ${
+            hovered ? ' border-blue-500 shadow-2xl' : ''
+          }`}
+        >
+          {images.map((item, index) => (
+            <Image
+              key={index}
+              src={item}
+              width={1500}
+              height={1500}
+              alt={'Фото товара'}
+              onClick={() => api?.scrollTo(index)}
+              //onError={() => setHasError(true)}
+              className={`min-w-16 min-h-16 max-w-20 max-h-20 mx-2 mt-2 cursor-pointer rounded-xl border  transition-all duration-500 ${
+                index === current - 1 && hovered ? 'border-blue-500 shadow-2xl' : ''
+              }`}
+            />
+          ))}
+        </div>
+      )}
 
       <div
         className={`flex min-w-lg justify-center rounded-lg overflow-hidden bg-white border  transition-all duration-500 ${
