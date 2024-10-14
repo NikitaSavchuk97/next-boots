@@ -19,7 +19,7 @@ interface Props {
 }
 
 export const ProductImages: FC<Props> = ({ images, className, modal = false }) => {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const hovered = useHoverDirty(ref);
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
@@ -41,13 +41,13 @@ export const ProductImages: FC<Props> = ({ images, className, modal = false }) =
 
   return (
     <div
-      className='flex flex-row justify-center max-w-[700px] max-h-[575px] transition-all duration-500 relative hover:scale-[1.03]'
+      className={` flex flex-row sm:max-w-full justify-center  max-h-[575px] transition-all duration-500 relative hover:scale-[1.02] `}
       ref={ref}
     >
       {!modal && (
         <div
-          className={`hidden md:flex flex-col min-w-[98px] h-auto mr-4 rounded-lg border transition-all duration-500 ${
-            hovered ? ' border-blue-500 shadow-2xl' : ''
+          className={`hidden xl:flex flex-col min-w-[98px] h-auto mr-4 rounded-lg border border-transparent transition-all duration-500 ${
+            hovered ? '' : ''
           }`}
         >
           {images.map((item, index) => (
@@ -58,7 +58,7 @@ export const ProductImages: FC<Props> = ({ images, className, modal = false }) =
               height={300}
               alt={'Фото товара'}
               onClick={() => api?.scrollTo(index)}
-              className={` flex  min-w-[40px] min-h-[40px] max-w-[80px] max-h-[80px] m-2 cursor-pointer rounded-xl border  transition-all duration-500 ${
+              className={` flex  min-w-[40px] min-h-[40px] max-w-[80px] max-h-[80px] mx-2 mb-2 cursor-pointer rounded-xl border  transition-all duration-500 ${
                 index === current - 1 && hovered ? 'border-blue-500 shadow-2xl' : ''
               }`}
             />
@@ -67,7 +67,7 @@ export const ProductImages: FC<Props> = ({ images, className, modal = false }) =
       )}
 
       <div
-        className={`flex  justify-center rounded-lg overflow-hidden bg-white border  transition-all duration-500 ${
+        className={`flex w-full justify-center rounded-lg overflow-hidden bg-white border  transition-all duration-500 ${
           hovered ? ' border-blue-500 shadow-2xl' : ''
         }`}
       >
@@ -77,12 +77,12 @@ export const ProductImages: FC<Props> = ({ images, className, modal = false }) =
             align: 'start',
             loop: true,
           }}
-          className='w-full max-w-xl min-w-[250px] min-h-[250px] flex items-center'
+          className='w-full xl:max-w-xl min-w-[250px] min-h-[250px] flex items-center overflow-hidden'
         >
-          <CarouselContent>
+          <CarouselContent className='sm:pr-[250px] lg:pr-0'>
             {images.map((image, index) => {
               return (
-                <CarouselItem key={index}>
+                <CarouselItem key={index} className=' lg:pl-10 lg:pr-10  xl:pl-13 xl:pr-13 '>
                   <img className='m-auto w-full h-auto object-cover' src={image} alt='' />
                 </CarouselItem>
               );

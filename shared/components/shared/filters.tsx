@@ -24,7 +24,7 @@ export const Filters: FC<ClassNamePropsTypes> = ({ className }) => {
     <div className={cn('', className)}>
       <Title text='Фильтрация' size='sm' className='mt-2 font-bold' />
 
-      <div className='flex flex-col gap-4 border-b  py-6 pb-7'>
+      <div className='flex flex-col gap-4 border-b border-gray-300  py-6 pb-7'>
         <FilterCheckbox
           text='В наличии'
           value={'stock'}
@@ -35,7 +35,7 @@ export const Filters: FC<ClassNamePropsTypes> = ({ className }) => {
         />
       </div>
 
-      <div className=' border-b  py-6 pb-7'>
+      <div className=' border-b border-gray-300 py-6 pb-7'>
         <CheckboxFiltersGroup
           name='gender'
           title='Пол'
@@ -52,7 +52,7 @@ export const Filters: FC<ClassNamePropsTypes> = ({ className }) => {
         />
       </div>
 
-      <div className='border-b py-6 pb-7'>
+      <div className='border-b border-gray-300 py-6 pb-7'>
         <p className='font-bold mb-3'>Цена</p>
         <div className='flex gap-3 mb-5'>
           <Input
@@ -82,7 +82,7 @@ export const Filters: FC<ClassNamePropsTypes> = ({ className }) => {
         />
       </div>
 
-      <div className=' border-b  py-6 pb-7'>
+      <div className=' border-b border-gray-300 py-6 pb-7'>
         <CheckboxFiltersGroup
           name='brand'
           title='Бренд'
@@ -95,7 +95,7 @@ export const Filters: FC<ClassNamePropsTypes> = ({ className }) => {
         />
       </div>
 
-      <div className=' border-b  py-6 pb-7'>
+      <div className=' border-b border-gray-300 py-6 pb-7'>
         <CheckboxFiltersGroup
           name='colors'
           title='Цвет'
@@ -109,7 +109,7 @@ export const Filters: FC<ClassNamePropsTypes> = ({ className }) => {
         />
       </div>
 
-      <div className=' border-b  py-6 pb-7'>
+      <div className=' border-b border-gray-300 py-6 pb-7'>
         <CheckboxFiltersGroup
           search={false}
           name='sizes'

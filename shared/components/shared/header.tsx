@@ -10,30 +10,32 @@ import { ArrowRight, ShoppingCart, User } from 'lucide-react';
 
 export const Header: FC<ClassNamePropsTypes> = ({ className }) => {
   return (
-    <header className={cn('border-b border-gray-100 pl-3 pr-3', className)}>
-      <Container className='flex items-center justify-between py-4 border-b-orange-100'>
-        <Link href='/'>
-          <Image
-            className='rounded-md h-auto'
-            src='/logo.png'
-            alt='logo'
-            width={300}
-            height={100}
-          />
-        </Link>
+    <header className={cn('border-b border-gray-300 pl-3 pr-3', className)}>
+      <Container className='flex items-end md:items-center justify-between py-4 border-b-orange-100'>
+        <div className='flex flex-col mr-4 md:mr-0 md:flex-row md:w-full '>
+          <Link href='/'>
+            <Image
+              className='rounded-md h-auto min-w-[200px]'
+              src='/logo.png'
+              alt='logo'
+              width={300}
+              height={100}
+            />
+          </Link>
 
-        <div className='mx-10 flex-1'>
-          <SearchInput />
+          <div className='mt-5 md:mx-4 md:my-auto md:w-full'>
+            <SearchInput />
+          </div>
         </div>
 
-        <div className='flex items-center gap-3'>
-          <Button className='flex items-center gap-1' variant='outline'>
+        <div className='flex md:items-center  flex-col  sm:flex-row'>
+          <Button className='flex items-center gap-1 h-11' variant='outline'>
             <User size={16} />
             Войти
           </Button>
 
           <div>
-            <Button className='group relative'>
+            <Button className='group relative h-11 mt-5 sm:mt-0 sm:ml-3'>
               <b>520 Руб</b>
               <span className='h-full w-[1px] bg-white/30 mx-3'></span>
               <div className='flex items-center gap-1 transition duration-300 group-hover:opacity-0'>

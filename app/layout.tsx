@@ -7,6 +7,8 @@ const rubik = Rubik({
   weight: ['400', '500', '600', '700', '800', '900'],
 });
 
+import { cn } from '@/shared/lib/utils';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -16,8 +18,9 @@ export default function RootLayout({
     <html lang='ru'>
       <head>
         <link data-rh='true' rel='icon' href='/favicon.ico' />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
       </head>
-      <body className={rubik.className}>{children}</body>
+      <body className={cn('flex flex-col min-h-screen', rubik.className)}>{children}</body>
     </html>
   );
 }

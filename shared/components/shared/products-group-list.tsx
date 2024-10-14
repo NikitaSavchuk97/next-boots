@@ -18,7 +18,9 @@ export const ProductsGroupList: FC<ProductsGroupListPropsTypes> = ({
   const setActiveCategoryId = useCategoryStore((state) => state.setActiveId);
   const intersectionRef = useRef(null);
   const intersection = useIntersection(intersectionRef, {
-    threshold: 1,
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.5,
   });
 
   useEffect(() => {
@@ -33,7 +35,7 @@ export const ProductsGroupList: FC<ProductsGroupListPropsTypes> = ({
 
       <div
         className={cn(
-          'grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-5 ',
+          'grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-8 ',
           listClassName,
         )}
       >

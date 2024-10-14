@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation';
-import { ChooseProductModal, Container } from '../../../../../shared/components/shared';
-import { ProductImages } from '../../../../../shared/components/shared';
 import { prisma } from '../../../../../prisma/prisma-client';
+import { ChooseProductModal } from '../../../../../shared/components/shared';
 
 const ProductModalPage = async ({ params: { id } }: { params: { id: string } }) => {
   const product = await prisma.product.findFirst({

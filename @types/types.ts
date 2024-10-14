@@ -85,7 +85,7 @@ export interface SliderPropsTypes {
 export interface TitlePropsTypes {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
   className?: string;
-  text: string;
+  text: string | undefined;
 }
 
 export interface UseFiltersPropsTypes {

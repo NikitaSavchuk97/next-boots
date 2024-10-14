@@ -18,7 +18,7 @@ export const SearchInput: FC<ClassNamePropsTypes> = () => {
   useDebounce(
     async () => {
       try {
-        if (focused && searchQuery) {
+        if (focused) {
           const responce = await Api.getProducts.getSearchProducts(searchQuery);
           setProducts(responce);
         } else if (!searchQuery) {
@@ -49,11 +49,14 @@ export const SearchInput: FC<ClassNamePropsTypes> = () => {
 
       <div
         ref={ref}
-        className={cn('flex rounded-2xl flex-1 justify-between relative h-11', focused && 'z-30')}
+        className={cn(
+          'flex rounded-xl flex-1 justify-between relative h-11 min-w-[250px]  ',
+          focused && 'z-30',
+        )}
       >
-        <Search className='absolute top=1/2 translate-y-[55%] left-3 h-5 text-gray-400' />
+        <Search className='absolute top=1/2 translate-y-[55%] left-2 h-5 text-gray-400' />
         <input
-          className='rounded-2xl outline-none w-full bg-gray-200 pl-11'
+          className='rounded-xl outline-none w-full bg-gray-200 pl-9'
           type='text'
           placeholder='Найти пару...'
           onFocus={() => setFocused(true)}

@@ -3,10 +3,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Title } from './title';
-import { cn } from '../../lib/utils';
 import { FC, useRef } from 'react';
 import { useHoverDirty } from 'react-use';
 import { ProductItem } from '@prisma/client';
+import { cn, getMinPrice } from '../../lib/utils';
 import { ProductCardPropsTypes } from '../../../@types/types';
 
 export const ProductCard: FC<ProductCardPropsTypes> = ({
@@ -20,20 +20,13 @@ export const ProductCard: FC<ProductCardPropsTypes> = ({
 }) => {
   const ref = useRef(null);
   const hovered = useHoverDirty(ref);
-  const getMinPrice = (productItems: ProductItem[]) => {
-    if (productItems.length === 0) return '∞';
-
-    return productItems.reduce((min, product) => {
-      return product.price < min ? product.price : min;
-    }, productItems[0].price);
-  };
 
   return (
     <Link
       href={`/product/${id}`}
       ref={ref}
       className={cn(
-        ' rounded-xl transition-all duration-500 hover:shadow-2xl bg-white border  hover:border-blue-500 hover:scale-[1.03]',
+        ' rounded-xl transition-all duration-500 hover:shadow-2xl bg-white border border-white hover:border-blue-500 hover:scale-[1.03]',
         className,
       )}
     >
@@ -41,7 +34,7 @@ export const ProductCard: FC<ProductCardPropsTypes> = ({
         <Image
           width={100}
           height={100}
-          className={`rounded-xl w-full h-auto opacity-1 transition-all opacity-1 duration-500 absolute ${
+          className={`rounded-xl w-full h-auto opacity-1 transition-all opacity-1 duration-500 absolute pl-4 pr-4 ${
             hovered ? 'opacity-0' : ''
           }`}
           //src={`uploads/${images[0]}`}
@@ -51,7 +44,7 @@ export const ProductCard: FC<ProductCardPropsTypes> = ({
         <Image
           width={100}
           height={100}
-          className={`rounded-xl  w-full h-auto transition-all `}
+          className={`rounded-xl  w-full h-auto transition-all pl-4 pr-4 `}
           //src={`uploads/${images[1]}`}
           src={hoverImageUrl}
           alt={name}

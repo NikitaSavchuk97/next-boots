@@ -1,36 +1,38 @@
 import { notFound } from 'next/navigation';
-import { Container, Title } from '../../../../shared/components/shared';
-import { ProductImages } from '../../../../shared/components/shared';
+import { bootTypes } from '@/prisma/constants';
 import { prisma } from '../../../../prisma/prisma-client';
+import { ProductImages } from '../../../../shared/components/shared';
+import { Container, Title } from '../../../../shared/components/shared';
+import ChooseProductForm from '@/shared/components/shared/choose-product-form';
 
 const ProductPage = async ({ params: { id } }: { params: { id: string } }) => {
-  const product = await prisma.product.findFirst({ where: { id: Number(id) } });
+  const product = await prisma.product.findFirst({
+    where: { id: Number(id) },
+    include: {
+      items: true,
+      category: true,
+    },
+  });
 
   if (!product) {
     return notFound();
   }
 
   return (
-    <Container className='flex flex-col lg:flex-row justify-center lg:justify-between my-10 pr-5 pl-5 '>
+    <Container className='flex flex-col lg:flex-row justify-center xl:justify-start my-20 pr-5 pl-5'>
       <ProductImages images={product.images} className='' />
-      <div className='max-w-[600px] ml-10'>
-        <Title text={product.name} className='pt-2' />
+      <div className=' mt-5 lg:mt-0 lg:ml-10 xl:ml-20'>
+        <Title
+          text={`${product.category.name} ${
+            bootTypes.find((bootType) => bootType.value === product.male)?.name
+          }:`}
+          size='sm'
+          className='pt-2'
+        />
+        <Title text={product.name} size='lg' className='pt-2' />
+        <Title text={`Цвет: ${product.mainColorRU}`} size='xs' />
         <br />
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates debitis ratione
-          voluptatum assumenda laborum! Ipsa nesciunt maiores iure quibusdam mollitia architecto
-          dolor eaque sequi fugiat ipsam voluptates, optio est et.
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates debitis ratione
-          voluptatum assumenda laborum! Ipsa nesciunt maiores iure quibusdam mollitia architecto
-          dolor eaque sequi fugiat ipsam voluptates, optio est et.
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates debitis ratione
-          voluptatum assumenda laborum! Ipsa nesciunt maiores iure quibusdam mollitia architecto
-          dolor eaque sequi fugiat ipsam voluptates, optio est et.
-        </p>
+        <ChooseProductForm product={product.items} />
       </div>
     </Container>
   );

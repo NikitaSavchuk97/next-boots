@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Header } from '../../shared/components/shared';
+import Footer from '@/shared/components/shared/footer';
 //import favicon from '../../../public/favicon.ico';
 
 export const metadata: Metadata = {
@@ -19,10 +20,13 @@ export default function HomeLayout({
   modal: React.ReactNode;
 }>) {
   return (
-    <main className='min-h-screen'>
+    <>
       <Header />
-      {children}
-      {modal}
-    </main>
+      <main className='flex-grow'>
+        {children}
+        {modal}
+      </main>
+      <Footer />
+    </>
   );
 }
