@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import { Header } from '../../shared/components/shared';
-import Footer from '@/shared/components/shared/footer';
+import { Header, Footer } from '../../shared/components/shared';
+
 //import favicon from '../../../public/favicon.ico';
 
 export const metadata: Metadata = {

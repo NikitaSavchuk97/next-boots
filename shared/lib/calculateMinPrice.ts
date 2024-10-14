@@ -7,7 +7,6 @@ import { ProductItem } from '@prisma/client';
  */
 
 export const calculateMinPrice = (productItems: ProductItem[]) => {
-  console.log(productItems);
   if (productItems.length === 0) return '∞';
 
   return productItems.reduce((min, product) => {

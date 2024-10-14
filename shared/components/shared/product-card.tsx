@@ -27,7 +27,7 @@ export const ProductCard: FC<ProductCardPropsTypes> = ({
       href={`/product/${id}`}
       ref={ref}
       className={cn(
-        ' rounded-xl transition-all duration-500 hover:shadow-xl z-10 bg-white border border-white hover:border-blue-500 hover:scale-[1.03]',
+        ' rounded-xl transition-all duration-500 hover:shadow-2xl z-10 bg-white border border-white hover:border-blue-500 hover:scale-[1.03]',
         className,
       )}
     >

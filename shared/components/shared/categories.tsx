@@ -17,7 +17,7 @@ export const Categories: FC<CategoriesPropsTypes> = ({ items, className }) => {
       {items.map(({ id, name }, index: number) => (
         <a
           className={cn(
-            'flex items-center font-bold h-11 rounded-2xl px-5',
+            'flex items-center font-bold h-11 rounded-xl px-5',
             categoryActiveId === id && 'bg-white shadow-md shadow-gray-300 text-primary',
           )}
           href={`/#${name}`}
