@@ -1,10 +1,10 @@
 'use client';
 
 import { ProductItem } from '@prisma/client';
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import { Title } from './title';
 import { Button } from '../ui';
-import { getMinPrice } from '@/shared/lib/utils';
+import { calculateMinPrice } from '@/shared/lib/calculateMinPrice';
 
 interface Props {
   product: ProductItem[];
@@ -15,21 +15,22 @@ const ChooseProductForm: FC<Props> = ({ product, className }) => {
   const [price, setPrice] = useState<number | null>(null);
   const [size, setSize] = useState<number | null>(null);
 
-  // useEffect(() => {
-  //   console.log(size);
-  // }, [size, price]);
+  const handleClickAdd = (e: any) => {
+    e.preventDefault();
+    //onClickAddCart?.();
+  };
 
   return (
-    <form className='flex flex-col min-w-[250px]'>
-      {price ? (
+    <form className='flex flex-col min-w-[250px]' onSubmit={handleClickAdd}>
+      {price !== calculateMinPrice(product) && price ? (
         <div className='flex flex-row'>
-          <Title size='lg' className='font-medium ml-[34.1px]' text={String(price)} />
+          <Title size='lg' className='font-medium ml-[34.15px]' text={String(price)} />
           <Title size='sm' className='h-min mt-auto mb-1 ml-2' text='₽' />
         </div>
       ) : (
         <div className='flex flex-row'>
           <Title size='sm' className='h-min mt-auto mb-1 mr-2' text='От' />
-          <Title size='lg' className='font-medium' text={String(getMinPrice(product))} />
+          <Title size='lg' className='font-medium' text={String(calculateMinPrice(product))} />
           <Title size='sm' className='h-min mt-auto mb-1 ml-2' text='₽' />
         </div>
       )}

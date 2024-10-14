@@ -4,10 +4,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Title } from './title';
 import { FC, useRef } from 'react';
+import { cn } from '../../lib/utils';
 import { useHoverDirty } from 'react-use';
 import { ProductItem } from '@prisma/client';
-import { cn, getMinPrice } from '../../lib/utils';
 import { ProductCardPropsTypes } from '../../../@types/types';
+import { calculateMinPrice } from '@/shared/lib/calculateMinPrice';
 
 export const ProductCard: FC<ProductCardPropsTypes> = ({
   id,
@@ -26,7 +27,7 @@ export const ProductCard: FC<ProductCardPropsTypes> = ({
       href={`/product/${id}`}
       ref={ref}
       className={cn(
-        ' rounded-xl transition-all duration-500 hover:shadow-2xl bg-white border border-white hover:border-blue-500 hover:scale-[1.03]',
+        ' rounded-xl transition-all duration-500 hover:shadow-xl z-10 bg-white border border-white hover:border-blue-500 hover:scale-[1.03]',
         className,
       )}
     >
@@ -53,7 +54,7 @@ export const ProductCard: FC<ProductCardPropsTypes> = ({
 
       <div className=' flex flex-col pl-3 pr-3 pb-2 justify-center'>
         <span className='text-[20px] text-center'>
-          от <b>{getMinPrice(items)} </b>₽
+          от <b>{calculateMinPrice(items)} </b>₽
         </span>
         <Title text={name} size='xs' className='mb-1 text-center' />
 

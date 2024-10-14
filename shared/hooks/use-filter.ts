@@ -5,7 +5,7 @@ import {
   PricePropsTypes,
   QueryFiltersPropsTypes,
   UseFiltersReturnPropsTypes,
-} from '../@types/types';
+} from '@/@types/types';
 
 export const useFilters = (): UseFiltersReturnPropsTypes => {
   const searchParams = useSearchParams() as unknown as Map<keyof QueryFiltersPropsTypes, string>;
