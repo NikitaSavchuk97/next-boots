@@ -8,7 +8,7 @@ import { cn } from '../../lib/utils';
 import { useHoverDirty } from 'react-use';
 import { ProductItem } from '@prisma/client';
 import { ProductCardPropsTypes } from '../../../@types/types';
-import { calculateMinPrice } from '@/shared/lib/calculateMinPrice';
+import { calculateMinPrice } from '@/shared/lib/calculate-min-price';
 
 export const ProductCard: FC<ProductCardPropsTypes> = ({
   id,
@@ -27,7 +27,7 @@ export const ProductCard: FC<ProductCardPropsTypes> = ({
       href={`/product/${id}`}
       ref={ref}
       className={cn(
-        ' rounded-xl transition-all duration-500 hover:shadow-2xl z-10 bg-white border border-white hover:border-blue-500 hover:scale-[1.03]',
+        ' rounded-xl transition-all duration-500 hover:shadow-2xl  bg-white border border-white z-10 hover:z-20 hover:border-blue-500 hover:scale-[1.03]',
         className,
       )}
     >

@@ -12,7 +12,7 @@ export const TopBar: FC<CategoriesPropsTypes> = ({ categories, className }) => {
   return (
     <div
       className={cn(
-        'sticky top-[-1px] bg-white py-5 shadow-xl shadow-black/5 z-50 pl-3 pr-3',
+        'sticky top-[-1px] bg-white py-5 shadow-xl shadow-black/5 pl-3 pr-3 z-30',
         className,
       )}
     >

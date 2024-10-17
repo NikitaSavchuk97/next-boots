@@ -9,14 +9,23 @@ interface Props extends CartItemProps {
   className?: string;
 }
 
-const CartDrawerItem: FC<Props> = ({ className, id, imageUrl, name, price, quantity }) => {
+const CartDrawerItem: FC<Props> = ({
+  className,
+  id,
+  imageUrl,
+  name,
+  price,
+  quantity,
+  size,
+  type,
+}) => {
   return (
     <div className={cn('flex bg-white p-5 gap-6', className)}>
       <CartItem.Image src={imageUrl} />
 
       <div className='flex-1'>
-        <CartItem.Info name={name} />
-        <hr className='my-3' />
+        <CartItem.Info name={name} type={type} size={size} />
+        <hr className='my-1' />
         <div className='flex items-center justify-between'>
           <Trash2Icon className='text-gray-400 cursor-pointer hover:text-gray-600' size={16} />
 

@@ -1,4 +1,6 @@
-import { FC, PropsWithChildren } from 'react';
+'use client';
+
+import { FC, PropsWithChildren, useEffect } from 'react';
 import {
   Sheet,
   SheetClose,
@@ -12,11 +14,22 @@ import Link from 'next/link';
 import { Button } from '../ui';
 import { ArrowRight } from 'lucide-react';
 import CartDrawerItem from './cart-drawer-item';
+import { useCartStore } from '@/shared/store';
 
 interface Props {
   className?: string;
 }
 export const CartDrawer: FC<PropsWithChildren<Props>> = ({ children, className }) => {
+  const [totalAmount, fetchCartItems, items] = useCartStore((state) => [
+    state.totalAmount,
+    state.fetchCartItems,
+    state.items,
+  ]);
+
+  useEffect(() => {
+    fetchCartItems();
+  }, [fetchCartItems]);
+
   return (
     <Sheet>
       <SheetTrigger asChild>{children}</SheetTrigger>
@@ -26,20 +39,26 @@ export const CartDrawer: FC<PropsWithChildren<Props>> = ({ children, className }
       >
         <SheetHeader>
           <SheetTitle>
-            В корзине <span className='font-bold-'>3 товара</span>
+            В корзине <span className='font-bold-'>{items.length} товара</span>
           </SheetTitle>
         </SheetHeader>
 
         <div className='-mx-6 mt-5 overflow-auto scrollbar flex-1'>
-          <div className='mb-2'>
-            <CartDrawerItem
-              id={1}
-              imageUrl='https://2.downloader.disk.yandex.ru/preview/9b413d6a2608e8e9a35a8980dc87db2d0d0d286d72707fac26e7680b02667c9f/inf/LVHP5rVzHUlk4w70FHf3i4w0yhTcE9L0TEThS-xrUL6ET92LKG16aqVQpQIxqWrpSeeOn0ag3bbnb2SIoRCEjg%3D%3D?uid=795455607&filename=nike-AIR_FORCE_1_07-MEDIUM_OLIVE_BLACK_STARFISH-3.webp&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=795455607&tknv=v2&size=1912x1004'
-              name='AIR_FORCE_1_07-'
-              price={9000}
-              quantity={2}
-            />
-          </div>
+          {items.map((item: any) => {
+            return (
+              <div className='mb-2' key={item.id}>
+                <CartDrawerItem
+                  id={item.id}
+                  imageUrl={item.imageUrl}
+                  name={item.name}
+                  price={item.price}
+                  quantity={2}
+                  type={item.type}
+                  size={item.size}
+                />
+              </div>
+            );
+          })}
         </div>
 
         <SheetFooter className='-mx-6 bg-white p-8'>
@@ -50,7 +69,7 @@ export const CartDrawer: FC<PropsWithChildren<Props>> = ({ children, className }
                 <div className='flex-1 border-b border-dashed border-b-neutral-200 relative -top-1 mx-2' />
               </span>
 
-              <span className='font-bold text-lg'>5000 ₽</span>
+              <span className='font-bold text-lg'>{totalAmount} ₽</span>
             </div>
 
             <Link href='/cart'>

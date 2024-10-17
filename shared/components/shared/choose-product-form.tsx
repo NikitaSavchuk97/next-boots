@@ -4,7 +4,7 @@ import { ProductItem } from '@prisma/client';
 import { FC, useState } from 'react';
 import { Title } from './title';
 import { Button } from '../ui';
-import { calculateMinPrice } from '@/shared/lib/calculateMinPrice';
+import { calculateMinPrice } from '@/shared/lib/calculate-min-price';
 
 interface Props {
   product: ProductItem[];

@@ -1646,6 +1646,14 @@ async function up() {
       quantityInCart: 2,
     },
   });
+
+  await prisma.cartItem.create({
+    data: {
+      productItemId: 66,
+      cartId: 1,
+      quantityInCart: 2,
+    },
+  });
 }
 
 async function down() {

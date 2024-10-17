@@ -3,7 +3,7 @@
 import { FC } from 'react';
 import { cn } from '../../lib/utils';
 import { Category } from '@prisma/client';
-import { useCategoryStore } from '../../store/category';
+import { useCategoryStore } from '@/shared/store';
 
 interface CategoriesPropsTypes {
   items: Category[];

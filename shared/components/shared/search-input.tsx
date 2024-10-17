@@ -45,13 +45,13 @@ export const SearchInput: FC<ClassNamePropsTypes> = () => {
 
   return (
     <>
-      {focused && <div className='fixed top-0 left-0 right-0 bottom-0  bg-black/70 z-30'></div>}
+      {focused && <div className='fixed top-0 left-0 right-0 bottom-0  bg-black/70 z-40 '></div>}
 
       <div
         ref={ref}
         className={cn(
           'flex rounded-xl flex-1 justify-between relative h-11 min-w-[250px]  ',
-          focused && 'z-30',
+          focused && 'z-40 ',
         )}
       >
         <Search className='absolute top=1/2 translate-y-[55%] left-2 h-5 text-gray-400' />
