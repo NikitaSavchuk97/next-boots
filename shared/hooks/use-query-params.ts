@@ -1,7 +1,7 @@
 import QS from 'qs';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { UseFiltersReturnPropsTypes } from '../@types/types';
+import { UseFiltersReturnPropsTypes } from '@/@types/types';
 
 export const useQueryParams = (filters: UseFiltersReturnPropsTypes) => {
   const router = useRouter();

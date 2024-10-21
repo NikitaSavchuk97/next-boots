@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Api } from '../services/api-client';
-import { BrandsReturnPropsTypes } from '../@types/types';
+import { BrandsReturnPropsTypes } from '@/@types/types';
 
 export const useBrands = (): BrandsReturnPropsTypes => {
   const [loading, setLoading] = useState(true);

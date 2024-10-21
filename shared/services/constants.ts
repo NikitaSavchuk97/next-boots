@@ -1,6 +1,7 @@
 export enum ApiRoutes {
+  CART = '/cart',
+
   GET_BRANDS = '/get-brands',
-  GET_CART = '/get-cart',
   GET_COLORS = '/get-colors',
   GET_SEARCH_PRODUCTS = '/products/search',
 

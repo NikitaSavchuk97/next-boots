@@ -5,6 +5,8 @@ import { FC, useState } from 'react';
 import { Title } from './title';
 import { Button } from '../ui';
 import { calculateMinPrice } from '@/shared/lib/calculate-min-price';
+import { useCartStore } from '@/shared/store';
+import toast from 'react-hot-toast';
 
 interface Props {
   product: ProductItem[];
@@ -12,16 +14,25 @@ interface Props {
 }
 
 const ChooseProductForm: FC<Props> = ({ product, className }) => {
-  const [price, setPrice] = useState<number | null>(null);
   const [size, setSize] = useState<number | null>(null);
+  const [price, setPrice] = useState<number | null>(null);
+  const [productId, setProductId] = useState<number | null>(null);
 
-  const handleClickAdd = (e: any) => {
+  const [addCartItem, loading] = useCartStore((state) => [state.addCartItem, state.loading]);
+
+  const onAddProduct = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    //onClickAddCart?.();
+    try {
+      await addCartItem(productId);
+      toast.success(`Пара в корзине`);
+    } catch (error) {
+      toast.error('Не удалось добавить пару в корзину');
+      console.error(error);
+    }
   };
 
   return (
-    <form className='flex flex-col min-w-[250px]' onSubmit={handleClickAdd}>
+    <form className='flex flex-col min-w-[250px]' onSubmit={onAddProduct}>
       {price !== calculateMinPrice(product) && price ? (
         <div className='flex flex-row'>
           <Title size='lg' className='font-medium ml-[34.15px]' text={String(price)} />
@@ -44,7 +55,7 @@ const ChooseProductForm: FC<Props> = ({ product, className }) => {
             <Button
               type='button'
               onClick={() => {
-                setSize(item.size), setPrice(item.price);
+                setSize(item.size), setPrice(item.price), setProductId(item.id);
               }}
               className={`flex w-full h-10 justify-center rounded-xl cursor-pointer bg-transparent hover:bg-transparent border hover:border-primary ${
                 size === item.size ? 'border-blue-500 border-2' : ''
@@ -58,7 +69,12 @@ const ChooseProductForm: FC<Props> = ({ product, className }) => {
       </div>
       <br />
       <br />
-      <Button type='submit' className='max-w-[300px]'>
+      <Button
+        loading={loading}
+        type='submit'
+        className='max-w-[300px]'
+        disabled={productId ? false : true}
+      >
         Добавить в корзину
       </Button>
     </form>

@@ -18,9 +18,9 @@ export const ProductsGroupList: FC<ProductsGroupListPropsTypes> = ({
   const setActiveCategoryId = useCategoryStore((state) => state.setActiveId);
   const intersectionRef = useRef(null);
   const intersection = useIntersection(intersectionRef, {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.5,
+    // root: null,
+    // rootMargin: '0px',
+    threshold: 0.4,
   });
 
   useEffect(() => {

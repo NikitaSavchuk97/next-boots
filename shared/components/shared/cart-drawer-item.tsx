@@ -13,6 +13,7 @@ const CartDrawerItem: FC<Props> = ({
   className,
   id,
   imageUrl,
+  onClickRemove,
   name,
   price,
   quantity,
@@ -27,7 +28,11 @@ const CartDrawerItem: FC<Props> = ({
         <CartItem.Info name={name} type={type} size={size} />
         <hr className='my-1' />
         <div className='flex items-center justify-between'>
-          <Trash2Icon className='text-gray-400 cursor-pointer hover:text-gray-600' size={16} />
+          <Trash2Icon
+            onClick={onClickRemove}
+            className='text-gray-400 cursor-pointer hover:text-gray-600'
+            size={16}
+          />
 
           <div className='flex items-center gap-3'>
             <CartItem.Price value={price} />

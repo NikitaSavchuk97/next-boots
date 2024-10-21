@@ -20,10 +20,11 @@ interface Props {
   className?: string;
 }
 export const CartDrawer: FC<PropsWithChildren<Props>> = ({ children, className }) => {
-  const [totalAmount, fetchCartItems, items] = useCartStore((state) => [
+  const [items, totalAmount, fetchCartItems, removeCartItem] = useCartStore((state) => [
+    state.items,
     state.totalAmount,
     state.fetchCartItems,
-    state.items,
+    state.removeCartItem,
   ]);
 
   useEffect(() => {
@@ -49,12 +50,13 @@ export const CartDrawer: FC<PropsWithChildren<Props>> = ({ children, className }
               <div className='mb-2' key={item.id}>
                 <CartDrawerItem
                   id={item.id}
-                  imageUrl={item.imageUrl}
                   name={item.name}
-                  price={item.price}
-                  quantity={2}
                   type={item.type}
                   size={item.size}
+                  price={item.price}
+                  quantity={item.quantity}
+                  imageUrl={item.imageUrl}
+                  onClickRemove={() => removeCartItem(item.id)}
                 />
               </div>
             );

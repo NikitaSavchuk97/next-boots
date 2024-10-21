@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { cn } from '../../lib/utils';
-import { Loader } from 'lucide-react';
+import { Loader, Loader2 } from 'lucide-react';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
 
@@ -49,7 +49,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         {...props}
       >
-        {!loading ? children : <Loader className='w-5 h-5 animate-spin' />}
+        {!loading ? children : <Loader2 className='w-5 h-5 animate-spin' />}
       </Comp>
     );
   },

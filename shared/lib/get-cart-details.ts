@@ -74,10 +74,12 @@ export const getCartDetails = (data: StateCart): ReturnProps => {
     } ${bootTypes.find((bootType) => bootType.value === item.productItem.product.male)?.name}:`,
   }));
 
-  const totalAmount = items.reduce(
-    (accumulator, currentValue) => accumulator + currentValue.price,
-    0,
-  );
+  // const totalAmount = items.reduce(
+  //   (accumulator, currentValue) => accumulator + currentValue.price,
+  //   0,
+  // );
+
+  const totalAmount = data.totalAmount;
 
   return {
     items,
