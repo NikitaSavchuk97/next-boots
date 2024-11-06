@@ -49,6 +49,7 @@ export const CartDrawer: FC<PropsWithChildren<Props>> = ({ children, className }
             return (
               <div className='mb-2' key={item.id}>
                 <CartDrawerItem
+                  disabled={item.disabled}
                   id={item.id}
                   name={item.name}
                   type={item.type}

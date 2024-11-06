@@ -2,18 +2,10 @@ import { Suspense } from 'react';
 import { prisma } from '../../prisma/prisma-client';
 import { Container, Filters, Title, TopBar } from '../../shared/components/shared';
 import { ProductsGroupList } from '../../shared/components/shared/products-group-list';
+import { findProduct, GetSearchParams } from '@/shared/lib/find-product';
 
-export default async function Home() {
-  const categories = await prisma.category.findMany({
-    include: {
-      products: {
-        include: {
-          items: true,
-        },
-      },
-    },
-  });
-
+export default async function Home({ searchParams }: { searchParams: GetSearchParams }) {
+  const categories = await findProduct(searchParams);
   return (
     <>
       <Container className='mt-10 pl-3 pr-3 '>

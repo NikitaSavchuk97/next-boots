@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useSet } from 'react-use';
 import { useSearchParams } from 'next/navigation';
 import {
@@ -42,18 +42,21 @@ export const useFilters = (): UseFiltersReturnPropsTypes => {
     }));
   };
 
-  return {
-    inStock,
-    setInStock,
-    sizes,
-    setSize: toggleSizes,
-    prices,
-    setPrice: updatePrice,
-    selectedBrands,
-    setBrand: toggleBrands,
-    gender,
-    setGender: toggleGender,
-    selectedColors,
-    setColors: toggleColors,
-  };
+  return useMemo(
+    () => ({
+      inStock,
+      setInStock,
+      sizes,
+      setSize: toggleSizes,
+      prices,
+      setPrice: updatePrice,
+      selectedBrands,
+      setBrand: toggleBrands,
+      gender,
+      setGender: toggleGender,
+      selectedColors,
+      setColors: toggleColors,
+    }),
+    [inStock, sizes, prices, selectedBrands, gender, selectedColors],
+  );
 };

@@ -6,8 +6,8 @@ import { updateCartTotalAmount } from '@/shared/lib/update-cart-total-amount';
 
 export async function GET(req: NextRequest) {
   try {
-		const token = req.cookies.get('cartToken')?.value;
-		
+    const token = req.cookies.get('cartToken')?.value;
+
     if (!token) {
       return NextResponse.json({ totalAmount: 0, items: [] });
     }
@@ -60,15 +60,15 @@ export async function POST(req: NextRequest) {
     if (findCartItem?.productItemId === id) {
       console.log('[CART_POST] product already in cart');
       return NextResponse.json({ message: 'product already in cart' }, { status: 500 });
+    } else {
+      await prisma.cartItem.create({
+        data: {
+          cartId: userCart.id,
+          productItemId: id,
+          quantityInCart: 1,
+        },
+      });
     }
-
-    await prisma.cartItem.create({
-      data: {
-        cartId: userCart.id,
-        productItemId: id,
-        quantityInCart: 1,
-      },
-    });
 
     const updateUserCart = await updateCartTotalAmount(token);
     const responce = NextResponse.json(updateUserCart);

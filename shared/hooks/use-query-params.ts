@@ -10,7 +10,7 @@ export const useQueryParams = (filters: UseFiltersReturnPropsTypes) => {
       ...filters.prices,
       stock: filters.inStock,
       size: Array.from(filters.sizes),
-      gender: Array.from(filters.gender),
+			gender: Array.from(filters.gender),
       brand: Array.from(filters.selectedBrands),
       color: Array.from(filters.selectedColors),
     };
@@ -19,5 +19,5 @@ export const useQueryParams = (filters: UseFiltersReturnPropsTypes) => {
       arrayFormat: 'comma',
     });
     router.push(`?${queryString}`, { scroll: false });
-  }, [filters, router]);
+  }, [filters]);
 };

@@ -10,7 +10,16 @@ const ProductPage = async ({ params: { id } }: { params: { id: string } }) => {
     where: { id: Number(id) },
     include: {
       items: true,
-      category: true,
+      category: {
+        include: {
+          products: {
+            include: {
+              items: true,
+            },
+          },
+        },
+			},
+			
     },
   });
 

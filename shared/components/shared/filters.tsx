@@ -5,10 +5,10 @@ import { cn } from '../../lib/utils';
 import { Input } from '../ui';
 import { RangeSlider } from './range-slider';
 import { ClassNamePropsTypes } from '../../../@types/types';
-import { CheckboxFiltersGroup, FilterCheckbox, Title } from '.';
+import { CheckboxFiltersGroup, Title } from '.';
 import { useQueryParams, useFilters, useColors, useBrands } from '../../hooks';
 
-export const Filters: FC<ClassNamePropsTypes> = ({ className }) => {
+export const Filters: FC<ClassNamePropsTypes> = ({ className}) => {
   const filters = useFilters();
   const { colors, defaultColors } = useColors();
   const { brands, defaultBrands, loading } = useBrands();
@@ -24,7 +24,7 @@ export const Filters: FC<ClassNamePropsTypes> = ({ className }) => {
     <div className={cn('', className)}>
       <Title text='Фильтрация' size='sm' className='mt-2 font-bold' />
 
-      <div className='flex flex-col gap-4 border-b border-gray-300  py-6 pb-7'>
+      {/* <div className='flex flex-col gap-4 border-b border-gray-300  py-6 pb-7'>
         <FilterCheckbox
           text='В наличии'
           value={'stock'}
@@ -33,7 +33,7 @@ export const Filters: FC<ClassNamePropsTypes> = ({ className }) => {
             filters.setInStock(filters.inStock === 'true' ? undefined : 'true')
           }
         />
-      </div>
+      </div> */}
 
       <div className=' border-b border-gray-300 py-6 pb-7'>
         <CheckboxFiltersGroup
@@ -45,9 +45,9 @@ export const Filters: FC<ClassNamePropsTypes> = ({ className }) => {
           onClickCheckbox={filters.setGender}
           limit={3}
           items={[
-            { text: 'Мужчины', value: 'male' },
-            { text: 'Женщины', value: 'female' },
-            { text: 'Унисекс', value: 'unisex' },
+            { text: 'Мужчины', value: 'MALE' },
+            { text: 'Женщины', value: 'FEMALE' },
+            { text: 'Унисекс', value: 'UNISEX' },
           ]}
         />
       </div>

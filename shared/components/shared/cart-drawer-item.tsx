@@ -2,7 +2,6 @@ import { FC } from 'react';
 import { cn } from '@/shared/lib/utils';
 import * as CartItem from './cart-item-details';
 import { CartItemProps } from './cart-item-details/cart-item-details.types';
-import { Button } from '../ui';
 import { Trash2Icon } from 'lucide-react';
 
 interface Props extends CartItemProps {
@@ -16,12 +15,19 @@ const CartDrawerItem: FC<Props> = ({
   onClickRemove,
   name,
   price,
+  disabled,
   quantity,
   size,
   type,
 }) => {
   return (
-    <div className={cn('flex bg-white p-5 gap-6', className)}>
+    <div
+      className={cn(
+        'flex bg-white p-5 gap-6',
+        { 'opacity-50 pointer-events-none': disabled },
+        className,
+      )}
+    >
       <CartItem.Image src={imageUrl} />
 
       <div className='flex-1'>
