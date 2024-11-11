@@ -2,14 +2,19 @@ import { FC } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '../ui';
+import { User } from 'lucide-react';
 import { cn } from '../../lib/utils';
+import CartButton from './cart-button';
 import { Container } from './container';
 import { SearchInput } from './search-input';
-import { ClassNamePropsTypes } from '../../../@types/types';
-import { User } from 'lucide-react';
-import CartButton from './cart-button';
 
-export const Header: FC<ClassNamePropsTypes> = ({ className }) => {
+interface HeaderPropTypes {
+  className: string;
+  hasSearch?: boolean;
+  hasCart?: boolean;
+}
+
+export const Header: FC<HeaderPropTypes> = ({ className, hasSearch = true, hasCart = true }) => {
   return (
     <header className={cn('border-b border-gray-300 pl-3 pr-3', className)}>
       <Container className='flex items-end md:items-center justify-between py-4 border-b-orange-100'>
@@ -24,9 +29,11 @@ export const Header: FC<ClassNamePropsTypes> = ({ className }) => {
             />
           </Link>
 
-          <div className='mt-5 md:mx-4 md:my-auto md:w-full'>
-            <SearchInput />
-          </div>
+          {hasSearch && (
+            <div className='mt-5 md:mx-4 md:my-auto md:w-full'>
+              <SearchInput />
+            </div>
+          )}
         </div>
 
         <div className='flex md:items-center  flex-col  sm:flex-row'>
@@ -35,9 +42,11 @@ export const Header: FC<ClassNamePropsTypes> = ({ className }) => {
             Войти
           </Button>
 
-          <div>
-            <CartButton />
-          </div>
+          {hasCart && (
+            <div>
+              <CartButton />
+            </div>
+          )}
         </div>
       </Container>
     </header>

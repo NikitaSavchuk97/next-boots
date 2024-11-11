@@ -7,9 +7,11 @@ export { Container } from './container';
 export { SortPopup } from './sort-popup';
 export { Categories } from './categories';
 export { CartDrawer } from './cart-drawer';
+export { WhiteBlock } from './white-block';
 export { SearchInput } from './search-input';
 export { ProductImages } from './product-images';
 export { FilterCheckbox } from './filter-checkbox';
 export { CheckboxFiltersGroup } from './checkbox-filters-group';
+export { CheckoutOrderDetails } from './checkout-order-details';
 
 export * from './modals';
