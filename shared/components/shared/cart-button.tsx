@@ -11,7 +11,7 @@ interface Props {
   className?: string;
 }
 
-const CartButton: FC<Props> = ({ className }) => {
+export const CartButton: FC<Props> = ({ className }) => {
   const [totalAmount, items, loading] = useCartStore((state) => [
     state.totalAmount,
     state.items,
@@ -39,5 +39,3 @@ const CartButton: FC<Props> = ({ className }) => {
     </CartDrawer>
   );
 };
-
-export default CartButton;

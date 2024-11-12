@@ -8,7 +8,7 @@ interface Props extends CartItemProps {
   className?: string;
 }
 
-const CartDrawerItem: FC<Props> = ({
+export const CartDrawerItem: FC<Props> = ({
   className,
   id,
   imageUrl,
@@ -48,5 +48,3 @@ const CartDrawerItem: FC<Props> = ({
     </div>
   );
 };
-
-export default CartDrawerItem;

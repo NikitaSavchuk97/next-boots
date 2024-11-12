@@ -3,7 +3,7 @@ import { bootTypes } from '@/prisma/constants';
 import { prisma } from '../../../../prisma/prisma-client';
 import { ProductImages } from '../../../../shared/components/shared';
 import { Container, Title } from '../../../../shared/components/shared';
-import ChooseProductForm from '@/shared/components/shared/choose-product-form';
+import { ChooseProductForm } from '@/shared/components/shared/choose-product-form';
 
 const ProductPage = async ({ params: { id } }: { params: { id: string } }) => {
   const product = await prisma.product.findFirst({

@@ -13,7 +13,7 @@ interface Props {
   className?: string;
 }
 
-const ChooseProductForm: FC<Props> = ({ product, className }) => {
+export const ChooseProductForm: FC<Props> = ({ product, className }) => {
   const [size, setSize] = useState<number | null>(null);
   const [price, setPrice] = useState<number | null>(null);
   const [productId, setProductId] = useState<number | null>(null);
@@ -80,5 +80,3 @@ const ChooseProductForm: FC<Props> = ({ product, className }) => {
     </form>
   );
 };
-
-export default ChooseProductForm;

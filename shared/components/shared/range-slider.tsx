@@ -5,7 +5,7 @@ import { SliderPropsTypes } from '../../../@types/types';
 import * as SliderPrimitive from '@radix-ui/react-slider';
 import { useState, useEffect, forwardRef, RefObject, Fragment } from 'react';
 
-const RangeSlider = forwardRef(
+export const RangeSlider = forwardRef(
   (
     { className, min, max, step, formatLabel, value, onValueChange, ...props }: SliderPropsTypes,
     ref,
@@ -57,5 +57,3 @@ const RangeSlider = forwardRef(
 );
 
 RangeSlider.displayName = SliderPrimitive.Root.displayName;
-
-export { RangeSlider };

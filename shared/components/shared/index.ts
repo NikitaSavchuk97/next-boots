@@ -5,12 +5,17 @@ export { TopBar } from './top-bar';
 export { Filters } from './filters';
 export { Container } from './container';
 export { SortPopup } from './sort-popup';
+export { ErrorText } from './error-text';
 export { Categories } from './categories';
 export { CartDrawer } from './cart-drawer';
 export { WhiteBlock } from './white-block';
 export { SearchInput } from './search-input';
 export { ProductImages } from './product-images';
 export { FilterCheckbox } from './filter-checkbox';
+export { RequiredSymbol } from './required-symbol';
+export { CartDrawerItem } from './cart-drawer-item';
+export { CheckoutSidebar } from './checkout-sidebar';
+export { FormInput } from './form-components/form-input';
 export { CheckboxFiltersGroup } from './checkbox-filters-group';
 export { CheckoutOrderDetails } from './checkout-order-details';
 

@@ -1,5 +1,4 @@
 import { Suspense } from 'react';
-import { prisma } from '../../prisma/prisma-client';
 import { Container, Filters, Title, TopBar } from '../../shared/components/shared';
 import { ProductsGroupList } from '../../shared/components/shared/products-group-list';
 import { findProduct, GetSearchParams } from '@/shared/lib/find-product';

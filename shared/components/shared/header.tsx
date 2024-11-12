@@ -4,12 +4,12 @@ import Image from 'next/image';
 import { Button } from '../ui';
 import { User } from 'lucide-react';
 import { cn } from '../../lib/utils';
-import CartButton from './cart-button';
 import { Container } from './container';
+import { CartButton } from './cart-button';
 import { SearchInput } from './search-input';
 
 interface HeaderPropTypes {
-  className: string;
+  className?: string;
   hasSearch?: boolean;
   hasCart?: boolean;
 }

@@ -1,10 +1,10 @@
 import { cn } from '@/shared/lib/utils';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
 interface PropsTypes {
   className?: string;
-  title: string;
-  value: string;
+  title: ReactNode;
+  value: string | number;
 }
 
 export const CheckoutOrderDetails: FC<PropsTypes> = ({ className, title, value }) => {

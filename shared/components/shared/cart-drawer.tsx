@@ -4,10 +4,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '../ui';
 import { Title } from './title';
-import { useCartStore } from '@/shared/store';
-import CartDrawerItem from './cart-drawer-item';
+import { cn } from '@/shared/lib/utils';
+import { useCart } from '@/shared/hooks';
+import { CartDrawerItem } from './cart-drawer-item';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { FC, PropsWithChildren, useEffect } from 'react';
+import { FC, PropsWithChildren, useState } from 'react';
 import {
   Sheet,
   SheetClose,
@@ -17,23 +18,10 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/shared/components/ui/sheet';
-import { cn } from '@/shared/lib/utils';
 
-interface Props {
-  className?: string;
-}
-
-export const CartDrawer: FC<PropsWithChildren<Props>> = ({ children, className }) => {
-  const [items, totalAmount, fetchCartItems, removeCartItem] = useCartStore((state) => [
-    state.items,
-    state.totalAmount,
-    state.fetchCartItems,
-    state.removeCartItem,
-  ]);
-
-  useEffect(() => {
-    fetchCartItems();
-  }, [fetchCartItems]);
+export const CartDrawer: FC<PropsWithChildren> = ({ children }) => {
+  const { totalAmount, items, removeCartItem } = useCart();
+  const [redirecting, setRedirecting] = useState(false);
 
   return (
     <Sheet>
@@ -101,11 +89,11 @@ export const CartDrawer: FC<PropsWithChildren<Props>> = ({ children, className }
                   <span className='font-bold text-lg'>{totalAmount} ₽</span>
                 </div>
 
-                <Link href='/cart'>
+                <Link href='/checkout'>
                   <Button
-                    //onClick={() => setRedirecting(true)}
-                    //loading={loading || redirecting}
-                    type='submit'
+                    onClick={() => setRedirecting(true)}
+                    loading={redirecting}
+                    type='button'
                     className='w-full h-12 text-base'
                   >
                     Оформить заказ
