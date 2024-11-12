@@ -1,8 +1,10 @@
-import { FC } from 'react';
+import { FC, InputHTMLAttributes } from 'react';
 import { RequiredSymbol } from '../required-symbol';
 import { Input } from '../../ui';
+import { ErrorText } from '../error-text';
+import { ClearButton } from '../clear-button';
 
-interface PropTypes {
+interface PropTypes extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   label?: string;
   required?: boolean;
@@ -10,8 +12,6 @@ interface PropTypes {
 }
 
 export const FormInput: FC<PropTypes> = ({ className, name, required, label, ...props }) => {
-  //const {} = useFormContext();
-
   return (
     <div className={className}>
       {label && (
@@ -22,9 +22,10 @@ export const FormInput: FC<PropTypes> = ({ className, name, required, label, ...
 
       <div className='relative'>
         <Input className='h-12 text-md' {...props} />
-			</div>
-			
+        <ClearButton />
+      </div>
 
+      <ErrorText text='Поле обязательно для заполнения' className='mt-2' />
     </div>
   );
 };

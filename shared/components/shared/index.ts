@@ -20,3 +20,5 @@ export { CheckboxFiltersGroup } from './checkbox-filters-group';
 export { CheckoutOrderDetails } from './checkout-order-details';
 
 export * from './modals';
+export * from './form-components';
+export * from './cart-item-details';
