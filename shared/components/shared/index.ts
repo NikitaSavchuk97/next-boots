@@ -22,3 +22,4 @@ export { CheckoutOrderDetails } from './checkout-order-details';
 export * from './modals';
 export * from './form-components';
 export * from './cart-item-details';
+export * from './checkout-components';

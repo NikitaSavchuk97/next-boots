@@ -1,12 +1,12 @@
 'use client';
 
-import { ProductItem } from '@prisma/client';
-import { FC, useState } from 'react';
-import { Title } from './title';
 import { Button } from '../ui';
-import { calculateMinPrice } from '@/shared/lib/calculate-min-price';
-import { useCartStore } from '@/shared/store';
+import { Title } from './title';
 import toast from 'react-hot-toast';
+import { FC, useState } from 'react';
+import { ProductItem } from '@prisma/client';
+import { useCartStore } from '@/shared/store';
+import { calculateMinPrice } from '@/shared/lib/calculate-min-price';
 
 interface Props {
   product: ProductItem[];

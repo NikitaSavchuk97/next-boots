@@ -80,7 +80,6 @@ export const getCartDetails = (data: StateCart): ReturnProps => {
   // );
 
   const totalAmount = data.totalAmount;
-
   return {
     items,
     totalAmount,
