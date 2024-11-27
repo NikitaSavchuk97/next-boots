@@ -5,6 +5,6 @@ interface Props {
   className?: string;
 }
 
-export const CartItemDetailsPrice: React.FC<Props> = ({ value, className }) => {
+export const CartItemPrice: React.FC<Props> = ({ value, className }) => {
   return <h2 className={cn('font-bold', className)}>{value} ₽</h2>;
 };

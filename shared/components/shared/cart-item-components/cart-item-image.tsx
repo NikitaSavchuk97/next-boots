@@ -5,6 +5,6 @@ interface Props {
   className?: string;
 }
 
-export const CartItemDetailsImage: React.FC<Props> = ({ src, className }) => {
+export const CartItemImage: React.FC<Props> = ({ src, className }) => {
   return <img className={cn('w-[60px] h-[60px]', className)} src={src} alt='Превью товара' />;
 };
