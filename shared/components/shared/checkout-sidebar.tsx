@@ -2,23 +2,28 @@ import { FC } from 'react';
 import { WhiteBlock } from './white-block';
 import { CheckoutOrderDetails } from './checkout-order-details';
 import { ArrowRight, Package, Percent, Truck } from 'lucide-react';
-import { Button } from '../ui';
+import { Button, Skeleton } from '../ui';
 
 const VAT = 13;
 const DELIVERY_PRICE = 250;
 
 interface PropTypes {
   totalAmount: number;
+  loading?: boolean;
 }
 
-export const CheckoutSidebar: FC<PropTypes> = ({ totalAmount }) => {
+export const CheckoutSidebar: FC<PropTypes> = ({ totalAmount, loading = false }) => {
   const vatPrice = (totalAmount * VAT) / 100;
   const totalPrice = totalAmount + DELIVERY_PRICE + vatPrice;
   return (
     <WhiteBlock className='p-6 top-4 sticky'>
       <div className='flex flex-col gap-1'>
         <span className='text-xl'>Итого:</span>
-        <span className='text-[34px] font-extrabold'>{totalPrice} ₽</span>
+        {loading ? (
+          <Skeleton className='h-11 w-48' />
+        ) : (
+          <span className='h-11 text-[34px] font-extrabold'>{totalPrice} ₽</span>
+        )}
       </div>
 
       <CheckoutOrderDetails
@@ -28,7 +33,7 @@ export const CheckoutSidebar: FC<PropTypes> = ({ totalAmount }) => {
             Стоимость корзины:
           </div>
         }
-        value={totalAmount}
+        value={loading ? <Skeleton className='h-6 w-16' /> : `${totalAmount} ₽`}
       />
 
       <CheckoutOrderDetails
@@ -38,7 +43,7 @@ export const CheckoutSidebar: FC<PropTypes> = ({ totalAmount }) => {
             Доставка:
           </div>
         }
-        value={DELIVERY_PRICE}
+        value={loading ? <Skeleton className='h-6 w-16' /> : `${DELIVERY_PRICE} ₽`}
       />
 
       <CheckoutOrderDetails
@@ -48,7 +53,7 @@ export const CheckoutSidebar: FC<PropTypes> = ({ totalAmount }) => {
             Налоги:
           </div>
         }
-        value={VAT}
+        value={loading ? <Skeleton className='h-6 w-16' /> : `${VAT} %`}
       />
 
       <Button className='w-full h-14 rounded-xl mt-6 text-base font-bold' type='submit'>

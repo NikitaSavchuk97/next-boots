@@ -5,10 +5,14 @@ import { AddressInput } from '../address-input';
 import { Controller, useFormContext } from 'react-hook-form';
 import { ErrorText } from '../error-text';
 
-export const CheckoutAddress: FC = () => {
+interface PropTypes {
+  className?: string;
+}
+
+export const CheckoutAddress: FC<PropTypes> = ({ className }) => {
   const { control } = useFormContext();
   return (
-    <WhiteBlock title='3. Адрес доставки'>
+    <WhiteBlock title='3. Адрес доставки' className={className}>
       <div className='flex flex-col gap-5'>
         <Controller
           control={control}
