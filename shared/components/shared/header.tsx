@@ -1,16 +1,17 @@
 'use client';
 
-import { FC, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '../ui';
+import toast from 'react-hot-toast';
 import { User } from 'lucide-react';
 import { cn } from '../../lib/utils';
+import { FC, useEffect } from 'react';
 import { Container } from './container';
 import { CartButton } from './cart-button';
 import { SearchInput } from './search-input';
 import { useSearchParams } from 'next/navigation';
-import toast from 'react-hot-toast';
+import { useSession, signIn } from 'next-auth/react';
 
 interface HeaderPropTypes {
   className?: string;
@@ -19,6 +20,9 @@ interface HeaderPropTypes {
 }
 
 export const Header: FC<HeaderPropTypes> = ({ className, hasSearch = true, hasCart = true }) => {
+  const { data: session } = useSession();
+
+  console.log(session);
   const searchParams = useSearchParams();
 
   useEffect(() => {
@@ -51,7 +55,11 @@ export const Header: FC<HeaderPropTypes> = ({ className, hasSearch = true, hasCa
         </div>
 
         <div className='flex md:items-center  flex-col  sm:flex-row'>
-          <Button className='flex items-center gap-1 h-11' variant='outline'>
+          <Button
+            onClick={() => signIn('yandex', { callbackUrl: '/', redirect: true })}
+            className='flex items-center gap-1 h-11'
+            variant='outline'
+          >
             <User size={16} />
             Войти
           </Button>

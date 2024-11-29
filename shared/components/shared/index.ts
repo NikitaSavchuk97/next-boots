@@ -3,6 +3,7 @@ export { Header } from './header';
 export { Footer } from './footer';
 export { TopBar } from './top-bar';
 export { Filters } from './filters';
+export { Providers } from './providers';
 export { Container } from './container';
 export { SortPopup } from './sort-popup';
 export { ErrorText } from './error-text';

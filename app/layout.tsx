@@ -1,6 +1,5 @@
 import './globals.css';
 import { Rubik } from 'next/font/google';
-import toast, { Toaster } from 'react-hot-toast';
 
 const rubik = Rubik({
   subsets: ['cyrillic'],
@@ -9,6 +8,7 @@ const rubik = Rubik({
 });
 
 import { cn } from '@/shared/lib/utils';
+import { Providers } from '@/shared/components';
 
 export default function RootLayout({
   children,
@@ -22,8 +22,7 @@ export default function RootLayout({
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
       </head>
       <body className={cn('flex flex-col min-h-screen', rubik.className)}>
-        {children}
-        <Toaster />
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
