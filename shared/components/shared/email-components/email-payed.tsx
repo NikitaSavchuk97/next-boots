@@ -10,7 +10,7 @@ export const EmailPayed: FC<EmailOrderProps> = ({ orderId, items }) => {
     <div>
       <h1>Благодарим за покупку!</h1>
       <p>
-        Ваш заказ <b>{orderId}</b> оплачен. Список товаров:
+        Ваш заказ №<b>{orderId}</b> оплачен. Список товаров:
       </p>
       <ul>
         {items.map((item) => (

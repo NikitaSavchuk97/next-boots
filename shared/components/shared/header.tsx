@@ -1,4 +1,6 @@
-import { FC } from 'react';
+'use client';
+
+import { FC, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '../ui';
@@ -7,6 +9,8 @@ import { cn } from '../../lib/utils';
 import { Container } from './container';
 import { CartButton } from './cart-button';
 import { SearchInput } from './search-input';
+import { useSearchParams } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 interface HeaderPropTypes {
   className?: string;
@@ -15,6 +19,16 @@ interface HeaderPropTypes {
 }
 
 export const Header: FC<HeaderPropTypes> = ({ className, hasSearch = true, hasCart = true }) => {
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    if (searchParams.has('paid')) {
+      setTimeout(() => {
+        toast.success('Заказ успешно оплачен! Информация отправлена на почту.');
+      }, 500);
+    }
+  });
+
   return (
     <header className={cn('border-b border-gray-300 pl-3 pr-3', className)}>
       <Container className='flex items-end md:items-center justify-between py-4 border-b-orange-100'>
