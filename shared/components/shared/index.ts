@@ -11,6 +11,7 @@ export { Categories } from './categories';
 export { CartDrawer } from './cart-drawer';
 export { WhiteBlock } from './white-block';
 export { SearchInput } from './search-input';
+export { ProfileButton } from './profile-button';
 export { ProductImages } from './product-images';
 export { FilterCheckbox } from './filter-checkbox';
 export { RequiredSymbol } from './required-symbol';

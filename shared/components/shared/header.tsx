@@ -12,6 +12,7 @@ import { CartButton } from './cart-button';
 import { SearchInput } from './search-input';
 import { useSearchParams } from 'next/navigation';
 import { useSession, signIn } from 'next-auth/react';
+import { ProfileButton } from './profile-button';
 
 interface HeaderPropTypes {
   className?: string;
@@ -55,14 +56,7 @@ export const Header: FC<HeaderPropTypes> = ({ className, hasSearch = true, hasCa
         </div>
 
         <div className='flex md:items-center  flex-col  sm:flex-row'>
-          <Button
-            onClick={() => signIn('yandex', { callbackUrl: '/', redirect: true })}
-            className='flex items-center gap-1 h-11'
-            variant='outline'
-          >
-            <User size={16} />
-            Войти
-          </Button>
+          <ProfileButton />
 
           {hasCart && (
             <div>
