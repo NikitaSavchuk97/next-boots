@@ -1,7 +1,8 @@
 'use client';
 
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useCart } from '@/shared/hooks';
+import { createOrder } from '@/app/actions';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormProvider, useForm } from 'react-hook-form';
 import { checkoutFormSchema, CheckoutFormTypes } from '@/shared/lib/checkout-form-schema';
@@ -13,9 +14,10 @@ import {
   CheckoutSidebar,
   CheckoutPersonal,
 } from '@/shared/components';
-import { cn } from '@/shared/lib/utils';
+import toast from 'react-hot-toast';
 
 const CheckoutPage: FC = () => {
+  const [submitting, setSubmitting] = useState(false);
   const { totalAmount, items, removeCartItem, loading } = useCart();
 
   const form = useForm<CheckoutFormTypes>({
@@ -30,8 +32,19 @@ const CheckoutPage: FC = () => {
     },
   });
 
-  const onSubmit = (data: CheckoutFormTypes) => {
-    console.log(data);
+  const onSubmit = async (data: CheckoutFormTypes) => {
+    try {
+      setSubmitting(true);
+      const url: any = await createOrder(data);
+      toast.success('Заказ успешно оформлен! Переход на страницу оплаты...', { icon: '✅' });
+
+      if (url) {
+        location.href = url;
+      }
+    } catch (err) {
+      setSubmitting(false);
+      toast.error('Не удалось создать заказ', { icon: '❌' });
+    }
   };
 
   return (
@@ -55,7 +68,7 @@ const CheckoutPage: FC = () => {
             </div>
 
             <div className='w-full lg:w-[450px]'>
-              <CheckoutSidebar totalAmount={totalAmount} loading={loading} />
+              <CheckoutSidebar totalAmount={totalAmount} loading={loading || submitting} />
             </div>
           </div>
         </form>

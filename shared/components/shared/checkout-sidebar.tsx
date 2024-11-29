@@ -56,7 +56,11 @@ export const CheckoutSidebar: FC<PropTypes> = ({ totalAmount, loading = false })
         value={loading ? <Skeleton className='h-6 w-16' /> : `${VAT} %`}
       />
 
-      <Button className='w-full h-14 rounded-xl mt-6 text-base font-bold' type='submit'>
+      <Button
+        loading={loading}
+        className='w-full h-14 rounded-xl mt-6 text-base font-bold'
+        type='submit'
+      >
         Перейти к оплате
         <ArrowRight className='ml-2' />
       </Button>

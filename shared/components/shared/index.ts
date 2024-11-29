@@ -15,11 +15,11 @@ export { FilterCheckbox } from './filter-checkbox';
 export { RequiredSymbol } from './required-symbol';
 export { CartDrawerItem } from './cart-drawer-item';
 export { CheckoutSidebar } from './checkout-sidebar';
-export { FormInput } from './form-components/form-input';
 export { CheckboxFiltersGroup } from './checkbox-filters-group';
 export { CheckoutOrderDetails } from './checkout-order-details';
 
 export * from './form-components';
+export * from './email-components';
 export * from './modal-components';
 export * from './checkout-components';
 export * from './cart-item-components';
