@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { CartItem, Product, ProductItem } from '@prisma/client';
+import { ProductItem } from '@prisma/client';
 
 export interface BrandsReturnPropsTypes {
   brands: { value: string; text: string }[];

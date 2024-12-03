@@ -28,7 +28,7 @@ export const CartDrawer: FC<PropsWithChildren> = ({ children }) => {
       <SheetTrigger asChild>{children}</SheetTrigger>
       <SheetContent
         className={cn(
-          'flex flex-col justify-between pb-0 bg-gray-200',
+          'flex flex-col justify-between pb-0 bg-gray-200 rounded-l-3xl',
           !totalAmount && 'justify-center',
         )}
         aria-describedby={undefined}
@@ -36,16 +36,17 @@ export const CartDrawer: FC<PropsWithChildren> = ({ children }) => {
         {!totalAmount && (
           <div className='flex flex-col items-center justify-center w-72 mx-auto'>
             <Image src='/empty-box.png' alt='Empty cart' width={120} height={120} />
-            <Title size='sm' text='Корзина пустая' className='text-center font-bold my-2' />
+            <SheetTitle className='text-center font-bold text-2xl my-2'>Корзина пуста</SheetTitle>
             <p className='text-center text-neutral-500 mb-5'>
               Добавьте хотя бы одну пару, чтобы совершить заказ
             </p>
 
+            {/* BUTTON IN BUTTON  */}
             <SheetClose>
-              <Button className='w-56 h-12 text-base' size='lg'>
-                <ArrowLeft className='w-5 mr-2' />
+              <div className='flex flex-row items-center justify-center bg-primary font-bold text-white w-56 h-12 text-base rounded-md hover:opacity-90'>
+                <ArrowLeft className=' mr-2' />
                 Вернуться назад
-              </Button>
+              </div>
             </SheetClose>
           </div>
         )}
