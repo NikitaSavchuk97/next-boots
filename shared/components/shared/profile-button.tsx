@@ -21,7 +21,10 @@ export const ProfileButton: FC<Props> = ({ className, onClickSignIn }) => {
         </Button>
       ) : (
         <Link href='/profile'>
-          <Button variant='secondary' className='flex items-center'>
+          <Button
+            variant='secondary'
+            className='flex items-center h-11 bg-gray-200 hover:bg-gray-200 hover:opacity-90'
+          >
             <CircleUser size={18} />
             Профиль
           </Button>

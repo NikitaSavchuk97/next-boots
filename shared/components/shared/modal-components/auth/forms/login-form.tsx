@@ -6,14 +6,14 @@ import { FormInput } from '../../../form-components';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormProvider, useForm } from 'react-hook-form';
 import { DialogTitle } from '@/shared/components/ui/dialog';
-import { formLoginSchema, LoginFormTypes, RegisterFormTypes } from './schemas-form';
+import { formLoginSchema, LoginFormTypes } from './schemas-form';
 
 interface Props {
   onClose?: VoidFunction;
 }
 
 export const LoginForm: FC<Props> = ({ onClose }) => {
-  const form = useForm<RegisterFormTypes>({
+  const form = useForm<LoginFormTypes>({
     resolver: zodResolver(formLoginSchema),
     defaultValues: {
       email: '',
@@ -23,6 +23,7 @@ export const LoginForm: FC<Props> = ({ onClose }) => {
 
   const onSubmit = async (data: LoginFormTypes) => {
     try {
+      console.log(data);
       const res = await signIn('credentials', {
         ...data,
         redirect: false,

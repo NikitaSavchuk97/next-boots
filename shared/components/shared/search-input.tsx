@@ -56,7 +56,7 @@ export const SearchInput: FC<ClassNamePropsTypes> = () => {
       >
         <Search className='absolute top=1/2 translate-y-[55%] left-2 h-5 text-gray-400' />
         <input
-          className='rounded-xl outline-none w-full bg-gray-200 pl-9'
+          className='rounded-md outline-none w-full bg-gray-200 pl-9 '
           type='text'
           placeholder='Найти пару...'
           onFocus={() => setFocused(true)}

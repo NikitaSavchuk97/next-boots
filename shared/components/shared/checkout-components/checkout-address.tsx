@@ -1,9 +1,11 @@
+'use client';
+
 import { FC } from 'react';
-import { WhiteBlock } from '../white-block';
-import { FormInput, FormTextarea } from '../form-components';
-import { AddressInput } from '../address-input';
-import { Controller, useFormContext } from 'react-hook-form';
 import { ErrorText } from '../error-text';
+import { WhiteBlock } from '../white-block';
+import { AddressInput } from '../address-input';
+import { FormTextarea } from '../form-components';
+import { Controller, useFormContext } from 'react-hook-form';
 
 interface PropTypes {
   className?: string;

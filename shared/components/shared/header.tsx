@@ -6,12 +6,12 @@ import toast from 'react-hot-toast';
 import { cn } from '../../lib/utils';
 import { Container } from './container';
 import { CartButton } from './cart-button';
-import { useSession } from 'next-auth/react';
+
 import { SearchInput } from './search-input';
 import { AuthModal } from './modal-components';
 import { FC, useEffect, useState } from 'react';
 import { ProfileButton } from './profile-button';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 interface HeaderPropTypes {
   className?: string;
@@ -20,15 +20,24 @@ interface HeaderPropTypes {
 }
 
 export const Header: FC<HeaderPropTypes> = ({ className, hasSearch = true, hasCart = true }) => {
-  const { data: session } = useSession();
+  const router = useRouter();
   const searchParams = useSearchParams();
   const [openAuthModal, setOpenAuthModal] = useState(false);
 
   useEffect(() => {
+    let toastMessage = '';
     if (searchParams.has('paid')) {
+      toastMessage = 'Заказ успешно оплачен! Информация отправлена на почту.';
+    }
+    if (searchParams.has('verified')) {
+      toastMessage = 'Почта успешно подтверждена!.';
+    }
+
+    if (toastMessage) {
       setTimeout(() => {
-        toast.success('Заказ успешно оплачен! Информация отправлена на почту.');
-      }, 500);
+        toast.success(toastMessage, { duration: 3000 });
+        router.replace('/');
+      }, 1000);
     }
   });
 
@@ -53,7 +62,7 @@ export const Header: FC<HeaderPropTypes> = ({ className, hasSearch = true, hasCa
           )}
         </div>
 
-        <div className='flex md:items-center  flex-col  sm:flex-row'>
+        <div className='flex md:items-center justify-center  flex-col  sm:flex-row'>
           <AuthModal open={openAuthModal} onClose={() => setOpenAuthModal(false)} />
           <ProfileButton onClickSignIn={() => setOpenAuthModal(true)} />
 

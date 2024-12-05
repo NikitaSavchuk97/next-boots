@@ -1,8 +1,11 @@
 'use client';
 
-import { FC, useState } from 'react';
+import toast from 'react-hot-toast';
 import { useCart } from '@/shared/hooks';
 import { createOrder } from '@/app/actions';
+import { useSession } from 'next-auth/react';
+import { FC, useEffect, useState } from 'react';
+import { Api } from '@/shared/services/api-client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormProvider, useForm } from 'react-hook-form';
 import { checkoutFormSchema, CheckoutFormTypes } from '@/shared/lib/checkout-form-schema';
@@ -14,9 +17,9 @@ import {
   CheckoutSidebar,
   CheckoutPersonal,
 } from '@/shared/components';
-import toast from 'react-hot-toast';
 
 const CheckoutPage: FC = () => {
+  const { data: session } = useSession();
   const [submitting, setSubmitting] = useState(false);
   const { totalAmount, items, removeCartItem, loading } = useCart();
 
@@ -31,6 +34,21 @@ const CheckoutPage: FC = () => {
       comment: '',
     },
   });
+
+  useEffect(() => {
+    async function fetchUserInfo() {
+      const data = await Api.getMe.getMe();
+      const [firstName, lastName] = data.fullName.split(' ');
+
+      form.setValue('firstName', firstName);
+      form.setValue('lastName', lastName);
+      form.setValue('email', data.email);
+    }
+
+    if (session) {
+      fetchUserInfo();
+    }
+  }, [session]);
 
   const onSubmit = async (data: CheckoutFormTypes) => {
     try {

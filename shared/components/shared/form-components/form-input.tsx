@@ -1,3 +1,5 @@
+'use client';
+
 import { Input } from '../../ui';
 import { ErrorText } from '../error-text';
 import { ClearButton } from '../clear-button';

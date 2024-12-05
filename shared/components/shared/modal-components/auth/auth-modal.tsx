@@ -4,7 +4,7 @@ import { FC, useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { LoginForm, RegisterForm } from './forms';
 import { Button, Dialog } from '@/shared/components/ui';
-import { DialogContent, DialogTitle } from '@/shared/components/ui/dialog';
+import { DialogContent } from '@/shared/components/ui/dialog';
 
 interface Props {
   open: boolean;
@@ -20,6 +20,7 @@ export const AuthModal: FC<Props> = ({ open, onClose }) => {
 
   const handleClose = () => {
     onClose();
+    setType('login');
   };
 
   return (
@@ -32,14 +33,6 @@ export const AuthModal: FC<Props> = ({ open, onClose }) => {
         )}
         <hr />
         <div className='flex gap-2'>
-          <Button
-            type='button'
-            variant='secondary'
-            className='gap-2 h-12 p-2 flex-1'
-            onClick={() => signIn('yandex', { callbackUrl: '/', redirect: true })}
-          >
-            <img className='w-6 h-6' src='/yandex-login.svg' alt='' /> Яндекс
-          </Button>
           <Button
             type='button'
             variant='secondary'

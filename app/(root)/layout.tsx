@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Header, Footer } from '../../shared/components/shared';
+import { Suspense } from 'react';
 
 //import favicon from '../../../public/favicon.ico';
 
@@ -21,7 +22,10 @@ export default function HomeLayout({
 }>) {
   return (
     <>
-      <Header />
+      <Suspense>
+        <Header />
+      </Suspense>
+
       <main className='flex-grow'>
         {children}
         {modal}
